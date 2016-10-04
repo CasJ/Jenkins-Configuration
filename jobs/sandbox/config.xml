@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.6">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.17">
+    <script>String from_release = &apos;cas&apos;
+stage &apos;Sandbox&apos;
+node(&apos;onmetal-provisioner&apos;) {
+
+    sh &quot;&quot;&quot;
+    ssh -o StrictHostKeyChecking=no root@65.61.144.54 &apos;&apos;&apos;
+    echo &quot;Inside the rally server&quot;
+    sleep 20
+    &apos;&apos;&apos; &amp;
+    &quot;&quot;&quot;
+    println &apos;Finished&apos;
+    
+}
+</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>
