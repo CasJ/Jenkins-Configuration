@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.6">
+<flow-definition plugin="workflow-job@2.7">
   <actions/>
   <description>Job used for testing a debugging the pipeline</description>
   <keepDependencies>false</keepDependencies>
@@ -13,6 +13,7 @@
             <a class="string-array">
               <string>liberty</string>
               <string>stable/mitaka</string>
+              <string>stable/newton</string>
               <string>master</string>
             </a>
           </choices>
@@ -23,6 +24,7 @@
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
               <string>stable/mitaka</string>
+              <string>stable/newton</string>
               <string>master</string>
             </a>
           </choices>
@@ -33,7 +35,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.17">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.18">
     <script>
 def osa, common
 String workspace_dir 
