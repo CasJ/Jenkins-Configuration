@@ -40,7 +40,7 @@
 def osa, common
 String workspace_dir 
 String onmetal_ip
-String datacenter = &apos;iad&apos;
+String datacenter = &apos;dfw&apos;
 //String from_release = &apos;liberty&apos;
 //String to_release = &apos;stable/mitaka&apos;
 
