@@ -69,14 +69,6 @@ node(&apos;onmetal-provisioner&apos;) {
     // Download the project repository and paste the Rax key
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
     //unstash &apos;raxpub&apos;
-
-    // begin SCH
-    // install virtualenv tool
-    apt-get install python-virtualenv python-setuptools
-    easy_install virtualenv
-
-    // create a virtual environment called api_uptime
-    // end SCH
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
@@ -126,11 +118,9 @@ stage &apos;Upgrade&apos;
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
     
-    // Add Josh&apos;s API uptime here
-      //Steve H. Will handle this part
-      // where does this run?
-      // is virtualenv tool available?
-      // is a virtual environment available?
+    // start API uptime checker
+    echo &quot;Starting the API uptime checker&quot;
+
       // pull the code from github
       // get the config parameters - use os.cnf or cmd line args?
       // install requirements (into the virtualenv)
