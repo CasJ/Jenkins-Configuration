@@ -124,8 +124,7 @@ node(&apos;onmetal-provisioner&apos;) {
     // Getting IP for During Test
     def my_ip
     dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
-       // my_ip = osa.get_onmetal_ip()
-       my_ip = &apos;65.61.144.54&apos;
+       my_ip = osa.get_onmetal_ip()
     }
     
     //Pull during test from repo and create dir during-upgrade-tests
