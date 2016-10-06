@@ -121,10 +121,10 @@ node(&apos;onmetal-provisioner&apos;) {
     // start API uptime checker
     echo &quot;Starting the API uptime checker&quot;
 
-      // pull the code from github
-      // get the config parameters - use os.cnf or cmd line args?
-      // install requirements (into the virtualenv)
-      // start the tool
+    // pull the code from github
+    // get the config parameters - use os.cnf or cmd line args?
+    // install requirements - unless we do this above
+    // start the tool
 
     // Getting IP for During Test
     def my_ip
@@ -134,7 +134,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Pull during test from repo and create dir during-upgrade-tests
     dir(&apos;during-upgrade-tests&apos;) {
-        git &apos;https://github.com/sheyman/test_rolling_upgrades_during&apos;
+        git &apos;https://github.com/lamarwhitej/test_rolling_upgrades_during&apos;
 
     //Transfer During test and install requirements
     osa.setup_during_test(my_ip)
