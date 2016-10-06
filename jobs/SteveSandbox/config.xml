@@ -50,7 +50,7 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/lamarwhitej/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/sheyman/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
@@ -69,6 +69,14 @@ node(&apos;onmetal-provisioner&apos;) {
     // Download the project repository and paste the Rax key
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
     //unstash &apos;raxpub&apos;
+
+    // begin SCH
+    // install virtualenv tool
+    apt-get install python-virtualenv python-setuptools
+    easy_install virtualenv
+
+    // create a virtual environment called api_uptime
+    // end SCH
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
@@ -120,17 +128,23 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Add Josh&apos;s API uptime here
       //Steve H. Will handle this part
+      // where does this run?
+      // is virtualenv tool available?
+      // is a virtual environment available?
+      // pull the code from github
+      // get the config parameters - use os.cnf or cmd line args?
+      // install requirements (into the virtualenv)
+      // start the tool
 
     // Getting IP for During Test
     def my_ip
     dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
-       // my_ip = osa.get_onmetal_ip()
-       my_ip = &apos;65.61.144.54&apos;
+       my_ip = osa.get_onmetal_ip()
     }
     
     //Pull during test from repo and create dir during-upgrade-tests
     dir(&apos;during-upgrade-tests&apos;) {
-        git &apos;https://github.com/lamarwhitej/test_rolling_upgrades_during&apos;
+        git &apos;https://github.com/sheyman/test_rolling_upgrades_during&apos;
 
     //Transfer During test and install requirements
     osa.setup_during_test(my_ip)
