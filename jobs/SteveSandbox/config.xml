@@ -144,6 +144,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.start_during_test(my_ip)
     
     //osa.upgrade_openstack(to_release)
+    sleep(10000)
     
     //Stop During Test
     osa.stop_during_test(my_ip)
