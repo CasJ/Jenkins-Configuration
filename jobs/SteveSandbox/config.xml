@@ -117,15 +117,15 @@ stage &apos;Upgrade&apos;
 
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
-    
-    // start API uptime test
-    osa.start_api_uptime_test(my_ip)
 
     // Getting IP for During Test
     def my_ip
     dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
        my_ip = osa.get_onmetal_ip()
     }
+
+    // start API uptime test
+    osa.start_api_uptime_test(my_ip)
     
     //Pull during test from repo and create dir during-upgrade-tests
     dir(&apos;during-upgrade-tests&apos;) {
