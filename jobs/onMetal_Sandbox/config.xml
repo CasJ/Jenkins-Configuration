@@ -116,6 +116,9 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
     osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    
+    // Run the persistent resources creation
+    osa.run_persistent_resources_tests(&apos;create&apos;, &apos;persistent_creation&apos;)
 
 }
 
@@ -129,19 +132,6 @@ node(&apos;onmetal-provisioner&apos;) {
  
     // Josh&apos;s code for API uptime trigger
     // Josh&apos;s code for during tests trigger
-    
-    // Run the persistent resources creation
-    def results_file = &apos;persistent_creation&apos;
-    def action = &apos;create&apos;
-    sh &quot;&quot;&quot;
-    ssh -o StrictHostKeyChecking=no root@${onmetal_ip} &apos;&apos;&apos;
-    cd /root/tempest/
-    stream_id=`cat .testrepository/next-stream`
-    ostestr --regex persistent-${action}
-    cp .testrepository/\$stream_id /root/subunit/${results_file}
-    &apos;&apos;&apos;
-    &quot;&quot;&quot;
-    
     // osa.upgrade_openstack(to_release)
     
 }
@@ -156,6 +146,9 @@ node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+    
+    // Run the persistent resources validation
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;persistent_validation&apos;)
     
 }
 
