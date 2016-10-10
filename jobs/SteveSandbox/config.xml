@@ -124,6 +124,8 @@ node(&apos;onmetal-provisioner&apos;) {
        my_ip = osa.get_onmetal_ip()
     }
 
+    println(&quot;Got my IP and it is $my_ip&quot;)
+    
     // Pull API uptime test from repo and create dir api-uptime-tests
     dir(&apos;api-uptime-tests&apos;) {
         git &apos;https://github.com/osic/api_uptime&apos;
@@ -147,6 +149,9 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.start_during_test(my_ip)
     
     //osa.upgrade_openstack(to_release)
+
+    // sleep rather than doing the real upgrade
+    sleep(5000)
     
     //Stop During Test
     osa.stop_during_test(my_ip)
