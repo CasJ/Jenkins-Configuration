@@ -126,7 +126,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Pull API uptime test from repo and create dir api-uptime-tests
     dir(&apos;api-uptime-tests&apos;) {
-        git &apos;https://github.com/osic/api-uptime&apos;
+        git &apos;https://github.com/osic/api_uptime&apos;
 
     // Transfer api uptime test and install requirements
     osa.setup_api_uptime_test(my_ip)
