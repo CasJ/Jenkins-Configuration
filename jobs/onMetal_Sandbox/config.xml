@@ -150,6 +150,9 @@ node(&apos;onmetal-provisioner&apos;) {
     // Run the persistent resources validation
     osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;persistent_validation&apos;)
     
+    // Cleanup the persiste resources
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;, &apos;persistent_cleanup&apos;)
+    
 }
 
 
