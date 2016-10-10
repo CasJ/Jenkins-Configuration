@@ -129,7 +129,19 @@ node(&apos;onmetal-provisioner&apos;) {
  
     // Josh&apos;s code for API uptime trigger
     // Josh&apos;s code for during tests trigger
-    // cas&apos;s code for persistent tests creation
+    
+    // Run the persistent resources creation
+    def results_file = &apos;results&apos;
+    def action = &apos;create&apos;
+    sh &quot;&quot;&quot;
+    ssh -o StrictHostKeyChecking=no root@${onmetal_ip} &apos;&apos;&apos;
+    cd /root/tempest/
+    stream_id=`cat .testrepository/next-stream`
+    ostestr --regex persistent-${action}
+    cp .testrepository/\$stream_id /root/subunit/${results_file}
+    &apos;&apos;&apos;
+    &quot;&quot;&quot;
+    
     // osa.upgrade_openstack(to_release)
     
 }
