@@ -119,7 +119,7 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     // start API uptime test
-    osa.start_api_uptime_test(my_up)
+    osa.start_api_uptime_test(my_ip)
 
     // Getting IP for During Test
     def my_ip
@@ -144,7 +144,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.stop_during_test(my_ip)
 
     // stop API uptime test
-    osa.stop_api_uptime_test(my_up)
+    osa.stop_api_uptime_test(my_ip)
 }
 
     
