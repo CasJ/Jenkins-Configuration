@@ -119,7 +119,7 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     // start API uptime checker
-    echo &quot;Starting the API uptime checker&quot;
+    osa.start_api_uptime_test(my_ip)
 
     // pull the code from github
     // get the config parameters - use os.cnf or cmd line args?
@@ -144,10 +144,12 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.start_during_test(my_ip)
     
     //osa.upgrade_openstack(to_release)
-    sleep(10000)
     
     //Stop During Test
     osa.stop_during_test(my_ip)
+
+    // stop API uptime checker
+    osa.stop_api_uptime_test(my_ip)
 }
 
     
