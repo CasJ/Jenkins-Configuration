@@ -118,13 +118,8 @@ stage &apos;Upgrade&apos;
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
     
-    // start API uptime checker
-    osa.start_api_uptime_test(my_ip)
-
-    // pull the code from github
-    // get the config parameters - use os.cnf or cmd line args?
-    // install requirements - unless we do this above
-    // start the tool
+    // start API uptime test
+    osa.start_api_uptime_test(my_up)
 
     // Getting IP for During Test
     def my_ip
@@ -148,8 +143,8 @@ node(&apos;onmetal-provisioner&apos;) {
     //Stop During Test
     osa.stop_during_test(my_ip)
 
-    // stop API uptime checker
-    osa.stop_api_uptime_test(my_ip)
+    // stop API uptime test
+    osa.stop_api_uptime_test(my_up)
 }
 
     
