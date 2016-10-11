@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.7">
+  <actions/>
   <description>play with rolling upgrade</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -25,7 +26,6 @@
     <script>#!/usr/bin/env groovy
 
 def osa, common
-String workspace_dir 
 
 // Jenkins must provide these two variables as parameters or the build 
 // will fail:
