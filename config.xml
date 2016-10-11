@@ -37,7 +37,6 @@
             <labelString>agent-xl</labelString>
             <slaveOptions>
               <hardwareId>5</hardwareId>
-              <numExecutors>5</numExecutors>
               <retentionTime>-1</retentionTime>
             </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
@@ -75,7 +74,7 @@
         <instanceCap>5</instanceCap>
         <securityGroups>ci-infra-secgrp</securityGroups>
         <keyPairName>ci-infra-kp</keyPairName>
-        <numExecutors>2</numExecutors>
+        <numExecutors>5</numExecutors>
         <fsRoot>/home/ubuntu/</fsRoot>
         <credentialsId>fb4fe359-96e5-49ae-8cbd-cd4737230b71</credentialsId>
         <retentionTime>90</retentionTime>
