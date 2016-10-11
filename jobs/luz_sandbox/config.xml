@@ -49,9 +49,7 @@ echo &quot;Run pre-upgrade tasks&quot;
 node(&apos;agent-xl&apos;) {
     String main_path = &apos;/home/ubuntu/openstack-ansible&apos;
 
-    if (! fileExists &apos;hosts&apos;){
-        writeFile file: &apos;hosts&apos;, text: &apos;localhost,&apos;
-    }
+    writeFile file: &apos;hosts&apos;, text: &apos;localhost,&apos;
 
     osa.pre_project_upgrade(to_release, main_path)
     
