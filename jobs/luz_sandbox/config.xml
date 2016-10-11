@@ -49,7 +49,7 @@ echo &quot;Run pre-upgrade tasks&quot;
 node(&apos;agent-xl&apos;) {
     String main_path = &apos;/home/ubuntu/openstack-ansible&apos;
 
-    if (!fileExists &apos;hosts&apos;){
+    if (! fileExists &apos;hosts&apos;){
         writeFile file: &apos;hosts&apos;, text: &apos;localhost,&apos;
     }
 
