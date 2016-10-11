@@ -125,6 +125,7 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
         <string>All_In_One_VM</string>
+        <string>luz_sandbox</string>
       </jobNames>
       <jobFilters/>
       <columns>
