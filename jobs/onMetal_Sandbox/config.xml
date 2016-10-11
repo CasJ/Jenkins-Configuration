@@ -133,7 +133,7 @@ node(&apos;onmetal-provisioner&apos;) {
  
     // Josh&apos;s code for API uptime trigger
     // Josh&apos;s code for during tests trigger
-    // osa.upgrade_openstack(to_release)
+    osa.upgrade_openstack(to_release)
     
 }
 
