@@ -33,7 +33,7 @@ stage &apos;Pre-Deployment&apos;
 
 echo &apos;Load qa-jenkins-onmetal project&apos;
 node(&apos;agent-xl&apos;) {
-    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    git clone &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
     // Load the external functions using master since the git command
     // might not be available at the agent yet
     fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;){
