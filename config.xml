@@ -37,6 +37,7 @@
             <labelString>agent-xl</labelString>
             <slaveOptions>
               <hardwareId>5</hardwareId>
+              <numExecutors>5</numExecutors>
               <retentionTime>-1</retentionTime>
             </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
