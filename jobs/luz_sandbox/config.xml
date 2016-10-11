@@ -53,7 +53,11 @@ node(&apos;agent-xl&apos;) {
 
     dir(&apos;/home/ubuntu/qa-jenkins-onmetal&apos;) {
         writeFile file: &apos;hosts&apos;, text: &apos;localhost,&apos;
-        osa.pre_project_upgrade(to_release, main_path)
+        //osa.pre_project_upgrade(to_release, main_path)
+        release = to_release
+        echo &quot;Running the pre rolling upgrade. Going to release: ${release}&quot;
+        ansiblePlaybook extras: &quot;openstack_release=${release} main_path=${main_path}&quot;, inventory: &apos;hosts&apos;, playbook: &apos;run_pre_upgrade.yaml&apos;, sudoUser: null
+
         String project = &apos;keystone&apos;
         //osa.upgrade_project(project, main_path)
     }
