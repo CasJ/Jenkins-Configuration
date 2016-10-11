@@ -40,6 +40,7 @@ node(&apos;agent-xl&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
+    writeFile file: &apos;qa-jenkins-onmetal/hosts&apos;, text: &apos;localhost,&apos;
 }
 
 // *******************************
@@ -52,7 +53,6 @@ node(&apos;agent-xl&apos;) {
     String main_path = &apos;/home/ubuntu/openstack-ansible&apos;
 
     dir(&apos;qa-jenkins-onmetal&apos;) {
-        writeFile file: &apos;qa-jenkins-onmetal/hosts&apos;, text: &apos;localhost,&apos;
         osa.pre_project_upgrade(to_release, main_path)
         String project = &apos;keystone&apos;
         //osa.upgrade_project(project, main_path)
