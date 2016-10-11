@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.7">
+  <actions/>
   <description>once server is build try to upgrade it</description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -42,7 +43,7 @@ node(&apos;agent-xl&apos;) {
     osa.pre_project_upgrade(to_release, main_path)
 }
 
-echo &quot;Run nova rolling upgrade&quot;
+echo &quot;Run keystone rolling upgrade&quot;
 node(&apos;agent-xl&apos;) {
     String main_path = &apos;/home/ubuntu/openstack-ansible&apos;
     String project = &apos;keystone&apos;
