@@ -69,24 +69,24 @@ node(&apos;master&apos;) {
 node(&apos;onmetal-provisioner&apos;) {
 
     // Wait for the agent to finish running cloud-init
-    common.wait_for_agent_setup()
+    //common.wait_for_agent_setup()
 
     // Get the workspace directory in the agent
     workspace_dir = pwd()
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    unstash &apos;raxpub&apos;
+    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    //unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    onmetal_ip = osa.onmetal_provision(datacenter)
+    //onmetal_ip = osa.onmetal_provision(datacenter)
 
     // Provision the VMs in the onMetal host
-    osa.vm_provision()
+    //osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    osa.vm_preparation_for_osa(from_release)
+    //osa.vm_preparation_for_osa(from_release)
 
 }
 
@@ -99,10 +99,10 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    osa.deploy_openstack()
+    //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    osa.configure_tempest()  
+    //osa.configure_tempest()  
  
 }
 
@@ -118,8 +118,8 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
     
     // Run the persistent resources creation
-    osa.install_persistent_resources_tests()
-    osa.run_persistent_resources_tests(&apos;create&apos;)
+    //osa.install_persistent_resources_tests()
+    //osa.run_persistent_resources_tests(&apos;create&apos;)
 
 }
 
