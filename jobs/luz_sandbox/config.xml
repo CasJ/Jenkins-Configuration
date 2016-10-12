@@ -50,13 +50,17 @@ echo &quot;Run pre-upgrade tasks&quot;
 node(&apos;agent-xl&apos;) {
     
     String main_path = &apos;/home/ubuntu/openstack-ansible&apos;
-
+    //luztmp for aio
+    sh&quot;&quot;&quot;
+    git clone https://github.com/osic/qa-jenkins-onmetal.git  /home/ubuntu/qa-jenkins-onmetal
+    &quot;&quot;&quot;
+    
+    //luztmp for aio
     dir(&apos;/home/ubuntu/qa-jenkins-onmetal&apos;) {
-        //writeFile file: &apos;hosts&apos;, text: &apos;localhost,&apos;
         //osa.pre_project_upgrade(to_release, main_path)
+        //luz tmp aio
         release = to_release
-        echo &quot;Running the pre rolling upgrade. Going to release: ${release}&quot;
-        ansiblePlaybook extras: &quot;-e openstack_release=${release} -e main_path=${main_path}&quot;, inventory: &apos;localhost,&apos;, playbook: &apos;run_pre_upgrade.yaml&apos;
+        ansiblePlaybook extras: &quot;-e openstack_release=${release} -e main_path=${main_path}&quot;, inventory: &apos;localhost,&apos;, playbook: &apos;run_pre_upgrade.yaml&apos;, sudoUser: null
         String project = &apos;keystone&apos;
         //osa.upgrade_project(project, main_path)
     }
