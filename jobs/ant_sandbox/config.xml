@@ -108,7 +108,7 @@ node(&apos;onmetal-provisioner&apos;) {
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
     
-    osa.setup_parse_persistent_resources
+    osa.setup_parse_persistent_resources()
 
 }
 
