@@ -72,7 +72,9 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
-
+    dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
+       onmetal_ip = osa.onmetal_provision(datacenter)
+    }
     // Provision the VMs in the onMetal host
     //osa.vm_provision()
 
@@ -147,23 +149,10 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Metrics Aggregation&apos;
 // *******************************
-node(&apos;onmetal-provisioner&apos;) {
-    
-    // Add Josh&apos;s API uptime here
-      //Steve H. Will handle this part
-
-    // Getting IP for During Test
-    def my_ip
-    dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
-       my_ip = osa.get_onmetal_ip()
-    }
-}
+print ${onmetal_ip}
 
 node(&apos;elasticsearch&apos;){
-    print &quot;here&quot;
-    sh &quot;&quot;&quot;
-    node(&apos;elasticsearch&apos;)
-    &quot;&quot;&quot;
+    print onmetal_ip
 }
 
     
