@@ -59,7 +59,7 @@ node(&apos;agent-xl&apos;) {
     git branch: release, url: &apos;https://github.com/openstack/openstack-ansible&apos;
     sh &quot;&quot;&quot;
     export apply_security_hardening=false
-    scripts/bootstrap-ansible.sh
+    sudo scripts/bootstrap-ansible.sh
     #scripts/bootstrap-aio.sh
     #scripts/run-playbooks.sh
     #cd playbooks/
