@@ -124,6 +124,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <string>all_in_one_sandbox</string>
         <string>All_In_One_VM</string>
         <string>luz_sandbox</string>
       </jobNames>
