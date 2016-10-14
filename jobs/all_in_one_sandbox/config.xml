@@ -52,7 +52,7 @@ node(&apos;master&apos;) {
 node(&apos;agent-xl&apos;) {
     
     // Wait for cloud-init to finish
-    common.wait_for_cloud_init()
+    common.wait_for_agent_setup()
 
     // Deploy OpenStack
     echo &apos;Deploying OpenStack All In One&apos;
