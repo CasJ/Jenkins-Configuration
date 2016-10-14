@@ -112,6 +112,8 @@ node(&apos;onmetal-provisioner&apos;) {
         ip = osa.get_onmetal_ip()
     }
     
+    println &quot;HEY THERE = &quot; + ip
+    
     osa.setup_parse_persistent_resources(ip)
 
 }
