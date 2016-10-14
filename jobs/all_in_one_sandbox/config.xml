@@ -54,7 +54,7 @@ node(&apos;agent-xl&apos;) {
 
     // Deploy OpenStack
     echo release
-    deploy_openstack_aio(release)
+    osa.deploy_openstack_aio(release)
 
 }
 
