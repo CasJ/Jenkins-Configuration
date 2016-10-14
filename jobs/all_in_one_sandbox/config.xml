@@ -55,6 +55,7 @@ node(&apos;agent-xl&apos;) {
     common.wait_for_agent_setup()
 
     // Deploy OpenStack
+    echo release
     osa.deploy_openstack_aio(release)
 
 }</script>
