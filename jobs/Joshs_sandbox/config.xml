@@ -145,7 +145,7 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Metrics Aggregation&apos;
 // *******************************
-print ${onmetal_ip}
+print onmetal_ip
 
 node(&apos;elasticsearch&apos;){
     print onmetal_ip
