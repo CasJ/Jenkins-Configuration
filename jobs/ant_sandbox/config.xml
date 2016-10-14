@@ -50,7 +50,7 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/antwash/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/antwash/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
