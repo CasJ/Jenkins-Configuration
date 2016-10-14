@@ -72,11 +72,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
-    dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
-       onmetal_ip = osa.onmetal_provision(datacenter)
-    }
-    // Provision the VMs in the onMetal host
-    //osa.vm_provision()
+    onmetal_ip = &apos;65.61.144.150&apos;
 
     // Prepare the VMs to run OpenStack
     //osa.vm_preparation_for_osa(from_release)
