@@ -53,11 +53,20 @@ node(&apos;agent-xl&apos;) {
     common.wait_for_agent_setup()
 
     // Deploy OpenStack
-    echo release
-    osa.deploy_openstack_aio(release)
+    //osa.deploy_openstack_aio(release)
 
 }
-</script>
+
+echo &apos;Running tests to validate the OpenStack deployment&apos;
+node(&apos;agent-xl&apos;) {
+
+    // Install latest version of Tempest in the host
+    osa.install_tempest()
+
+    // Run the smoke tests
+    osa.run_tempest_smoke_tests(&apos;smoke_results&apos;)
+
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
