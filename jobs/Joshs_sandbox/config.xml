@@ -145,10 +145,10 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Metrics Aggregation&apos;
 // *******************************
-print onmetal_ip
-
 node(&apos;elasticsearch&apos;){
-    print onmetal_ip
+   sh &quot;&quot;&quot;
+    scp -o StrictHostKeyChecking=no -r root@${onmetal_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/output
+    &quot;&quot;&quot;
 }
 
     
