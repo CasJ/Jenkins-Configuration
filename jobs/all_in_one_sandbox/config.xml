@@ -24,9 +24,7 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
-    <script>#!/usr/bin/env groovy
-
-def osa, common
+    <script>def osa, common
 
 // Jenkins must provide this variable as parameter or the build 
 // will fail:
@@ -56,7 +54,7 @@ node(&apos;agent-xl&apos;) {
 
     // Deploy OpenStack
     echo release
-    osa.deploy_openstack_aio(release)
+    //osa.deploy_openstack_aio(release)
 
 }</script>
     <sandbox>true</sandbox>
