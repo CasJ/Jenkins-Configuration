@@ -160,9 +160,8 @@ node(&apos;onmetal-provisioner&apos;) {
 }
 
 node(&apos;elasticsearch&apos;){
-    sh &quot;&quot;&quot;
-    scp -o StrictHostKeyChecking=no -r root@${my_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/output
-    &quot;&quot;&quot;
+    print node(&apos;onmetal-provisioner&apos;)
+
 }
 
     
