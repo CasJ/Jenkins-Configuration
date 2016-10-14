@@ -147,11 +147,18 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Metrics Aggregation&apos;
 // *******************************
-node(&apos;elasticsearch&apos;){
+node(&apos;onmetal-provisioner&apos;) {
+    
+    // Add Josh&apos;s API uptime here
+      //Steve H. Will handle this part
+
+    // Getting IP for During Test
     def my_ip
     dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
        my_ip = osa.get_onmetal_ip()
     }
+
+node(&apos;elasticsearch&apos;){
     sh &quot;&quot;&quot;
     scp -o StrictHostKeyChecking=no -r root@${my_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/output
     &quot;&quot;&quot;
