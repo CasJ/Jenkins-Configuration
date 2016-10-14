@@ -160,6 +160,7 @@ node(&apos;onmetal-provisioner&apos;) {
 }
 
 node(&apos;elasticsearch&apos;){
+    print &quot;here&quot;
     sh &quot;&quot;&quot;
     node(&apos;elasticsearch&apos;)
     &quot;&quot;&quot;
