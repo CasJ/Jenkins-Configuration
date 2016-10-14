@@ -108,7 +108,7 @@ node(&apos;onmetal-provisioner&apos;) {
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
     def ip 
-    dir(&apos;home/ubuntu/workspace/onMetal_Sandbox&apos;){
+    dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;){
         ip = osa.get_onmetal_ip()
     }
     
