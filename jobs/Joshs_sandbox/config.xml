@@ -160,8 +160,7 @@ node(&apos;onmetal-provisioner&apos;) {
 }
 
 node(&apos;elasticsearch&apos;){
-    print node(&apos;onmetal-provisioner&apos;)
-
+    ssh node(&apos;onmetal-provisioner&apos;)
 }
 
     
