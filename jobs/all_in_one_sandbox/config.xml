@@ -7,13 +7,23 @@
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
         <hudson.model.ChoiceParameterDefinition>
-          <name>release</name>
+          <name>from_release</name>
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>master</string>
-              <string>stable/newton</string>
               <string>stable/mitaka</string>
+              <string>stable/newton</string>
+              <string>master</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>to_release</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>stable/newton</string>
+              <string>master</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
