@@ -157,6 +157,7 @@ node(&apos;onmetal-provisioner&apos;) {
     dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
        my_ip = osa.get_onmetal_ip()
     }
+}
 
 node(&apos;elasticsearch&apos;){
     sh &quot;&quot;&quot;
