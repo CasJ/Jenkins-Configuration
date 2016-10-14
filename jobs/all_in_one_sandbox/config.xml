@@ -54,24 +54,10 @@ node(&apos;agent-xl&apos;) {
 
     // Deploy OpenStack
     echo release
-    osa.install_tempest()
+    osa.deploy_openstack_aio(release)
 
 }
-
-def deploy_openstack_aio(release = &apos;master&apos;) {
-
-    echo &apos;Deploying OpenStack All In One&apos;
-    git branch: release, url: &apos;https://github.com/openstack/openstack-ansible&apos;
-    sh &quot;&quot;&quot;
-    export apply_security_hardening=false
-    sudo scripts/bootstrap-ansible.sh
-    #sudo scripts/bootstrap-aio.sh
-    #sudo scripts/run-playbooks.sh
-    #cd playbooks/
-    #sudo openstack-ansible os-tempest-install.yml
-    &quot;&quot;&quot;
-
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
