@@ -55,16 +55,7 @@ node(&apos;agent-xl&apos;) {
     common.wait_for_agent_setup()
 
     // Deploy OpenStack
-    echo &apos;Deploying OpenStack All In One&apos;
-    git branch: release, url: &apos;https://github.com/openstack/openstack-ansible&apos;
-    sh &quot;&quot;&quot;
-    export apply_security_hardening=false
-    sudo scripts/bootstrap-ansible.sh
-    #scripts/bootstrap-aio.sh
-    #scripts/run-playbooks.sh
-    #cd playbooks/
-    #openstack-ansible os-tempest-install.yml
-    &quot;&quot;&quot;
+    osa.deploy_openstack_aio(release)
 
 }</script>
     <sandbox>true</sandbox>
