@@ -24,11 +24,14 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
-    <script>def osa, common
+    <script>#!/usr/bin/env groovy
 
-// Jenkins must provide this variable as parameter or the build 
+def osa, common
+
+// Jenkins must provide these variables as parameters or the build
 // will fail:
-//  - release
+//  - from_release
+//  - to_release
 
 
 // *******************************
@@ -37,34 +40,51 @@ stage &apos;Deployment&apos;
 
 echo &apos;Deploying OpenStack using OSA for single node&apos;
 node(&apos;master&apos;) {
-    
+
     // Load the external functions using master since the git command
     // might not be available at the agent yet
     fileLoader.withGit(&apos;https://github.com/CasJ/openstack_one_node_ci.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;common.groovy&apos;);
         osa = fileLoader.load(&apos;osa_aio.functions.groovy&apos;);
     }
-    
+
 }
 
 node(&apos;agent-xl&apos;) {
-    
+
     // Wait for cloud-init to finish
     common.wait_for_agent_setup()
 
     // Deploy OpenStack
-    //osa.deploy_openstack_aio(release)
+    //osa.deploy_openstack_aio(from_release)
 
 }
+
+
+// *******************************
+stage &apos;Post-Deployment Validation&apos;
+// *******************************
 
 echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;agent-xl&apos;) {
 
     // Install latest version of Tempest in the host
-    osa.install_tempest()
+    //osa.install_tempest()
 
     // Run the smoke tests
-    osa.run_tempest_smoke_tests(&apos;smoke_results&apos;)
+    //osa.run_tempest_smoke_tests(&apos;smoke_results&apos;)
+
+}
+
+// *******************************
+stage &apos;Rolling Upgrade&apos;
+// *******************************
+
+echo &quot;Upgrading OpenStack from ${from_release} to ${to_release}&quot;
+node(&apos;agent-xl&apos;) {
+
+    // Install latest version of Tempest in the host
+    //osa.rolling_upgrade(to_release)
 
 }</script>
     <sandbox>true</sandbox>
