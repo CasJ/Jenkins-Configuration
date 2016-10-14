@@ -147,7 +147,7 @@ stage &apos;Metrics Aggregation&apos;
 // *******************************
 node(&apos;elasticsearch&apos;){
    sh &quot;&quot;&quot;
-    scp -o StrictHostKeyChecking=no -r root@${onmetal_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/output
+    scp -o StrictHostKeyChecking=no -r root@${onmetal_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/
     &quot;&quot;&quot;
 }
 
