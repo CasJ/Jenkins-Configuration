@@ -22,7 +22,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.18">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
     <script>#!/usr/bin/env groovy
 
 def osa, common
@@ -142,6 +142,13 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Stop During Test
     osa.stop_during_test(my_ip)
+}
+
+// *******************************
+stage &apos;Metrics Aggregation&apos;
+// *******************************
+node(&apos;elasticsearch&apos;){
+    scp -o StrictHostKeyChecking=no -r root@${my_ip}:/root/during-upgrade-tests/output_json /home/ubuntu/output
 }
 
     
