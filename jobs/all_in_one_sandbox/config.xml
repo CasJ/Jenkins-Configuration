@@ -56,7 +56,7 @@ node(&apos;agent-xl&apos;) {
 
     // Deploy OpenStack
     echo &apos;Deploying OpenStack All In One&apos;
-    git branch: ${release}, url: &apos;https://github.com/openstack/openstack-ansible&apos;
+    git branch: release, url: &apos;https://github.com/openstack/openstack-ansible&apos;
     sh &quot;&quot;&quot;
     export apply_security_hardening=false
     scripts/bootstrap-ansible.sh
