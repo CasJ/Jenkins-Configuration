@@ -55,7 +55,16 @@ node(&apos;agent-xl&apos;) {
     common.wait_for_cloud_init()
 
     // Deploy OpenStack
-    
+    echo &apos;Deploying OpenStack All In One&apos;
+    git branch: &quot;${release}&quot;, url: &apos;https://github.com/openstack/openstack-ansible&apos;
+    sh &quot;&quot;&quot;
+    export apply_security_hardening=false
+    scripts/bootstrap-ansible.sh
+    #scripts/bootstrap-aio.sh
+    #scripts/run-playbooks.sh
+    #cd playbooks/
+    #openstack-ansible os-tempest-install.yml
+    &quot;&quot;&quot;
 
 }</script>
     <sandbox>true</sandbox>
