@@ -50,7 +50,7 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/lamarwhitej/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/antwash/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
@@ -107,6 +107,8 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    
+    osa.setup_parse_persistent_resources
 
 }
 
@@ -122,26 +124,26 @@ node(&apos;onmetal-provisioner&apos;) {
       //Steve H. Will handle this part
 
     // Getting IP for During Test
-    def my_ip
-    dir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
-        my_ip = osa.get_onmetal_ip()
-    }
+    // def my_ip
+    // ir(&apos;/home/ubuntu/workspace/onMetal_Sandbox&apos;) {
+        // my_ip = osa.get_onmetal_ip()
+    //}
     
     //Pull during test from repo and create dir during-upgrade-tests
-    dir(&apos;during-upgrade-tests&apos;) {
-        git &apos;https://github.com/lamarwhitej/test_rolling_upgrades_during&apos;
+   // dir(&apos;during-upgrade-tests&apos;) {
+       // git &apos;https://github.com/lamarwhitej/test_rolling_upgrades_during&apos;
 
     //Transfer During test and install requirements
-    osa.setup_during_test(my_ip)
-    }
+    //osa.setup_during_test(my_ip)
+   // }
     
     //Start During Tests
-    osa.start_during_test(my_ip)
+    //osa.start_during_test(my_ip)
     
     //osa.upgrade_openstack(to_release)
     
     //Stop During Test
-    osa.stop_during_test(my_ip)
+    //osa.stop_during_test(my_ip)
 }
 
     
@@ -177,8 +179,7 @@ node(&apos;onmetal-provisioner&apos;) {
     // Delete the onMetal host
     //osa.delete_onmetal(datacenter)
 
-}
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
