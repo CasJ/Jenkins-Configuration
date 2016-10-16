@@ -143,7 +143,7 @@ stage &apos;Metrics Aggregation&apos;
 node(&apos;elasticsearch&apos;){
   git &apos;https://github.com/lamarwhitej/elastic-benchmark.git&apos;
   osa.aggregate_results(onmetal_ip)
-  osa.parse_results()
+  //osa.parse_results()
 }
 
     
