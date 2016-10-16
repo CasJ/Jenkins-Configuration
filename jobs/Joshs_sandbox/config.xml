@@ -139,8 +139,13 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Metrics Aggregation&apos;
 // *******************************
+
 node(&apos;elasticsearch&apos;){
+  git &apos;https://github.com/lamarwhitej/elastic-benchmark.git&apos;
   osa.aggregate_results(onmetal_ip)
+  sh&quot;&quot;&quot;
+  python elastic-benchmark/elastic_benchmark.upgrade.py
+  &quot;&quot;&quot;
 }
 
     
