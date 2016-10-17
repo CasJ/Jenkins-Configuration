@@ -23,8 +23,10 @@ node(&apos;onmetal-provisioner&apos;) {
     &quot;&quot;&quot;
     if (action == &apos;verify&apos;) {
         file_name = &quot;${action}_${stream_id}&quot;
+        println &apos;entered if&apos;
     } else {
         file_name = action
+        println &apos;did not enter if&apos;
     }
     
     println action
