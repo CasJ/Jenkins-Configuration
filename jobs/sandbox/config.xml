@@ -13,6 +13,8 @@
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
+    def now = new Date()
+    def timestamp = now.toTimestamp()
     println now.toTimestamp()
     
 }
