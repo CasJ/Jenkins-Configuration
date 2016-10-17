@@ -14,15 +14,20 @@ stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     String action = &apos;verify&apos;
+    String file_name
 
     def stream_id = sh returnStdout: true, script: &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@65.61.144.150 &apos;&apos;&apos;
     echo `cat /root/tempest/.testrepository/next-stream`
     &apos;&apos;&apos;
     &quot;&quot;&quot;
+    if (action == &apos;verify&apos;) {
+        file_name = action + &apos;_&apos; + stream_id
+    } else {
+        file_name = action
+    }
     
-    
-    println stream_id
+    println action
 }
 </script>
     <sandbox>true</sandbox>
