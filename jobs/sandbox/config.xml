@@ -17,7 +17,7 @@ node(&apos;onmetal-provisioner&apos;) {
     ssh -o StrictHostKeyChecking=no root@65.61.144.150 &apos;&apos;&apos;
     cd /root/tempest/
     stream_id=`cat .testrepository/next-stream`
-    echo stream_id
+    echo \$stream_id
     &apos;&apos;&apos;
     &quot;&quot;&quot;
     println test
