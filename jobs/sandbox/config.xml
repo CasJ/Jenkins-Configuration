@@ -13,14 +13,16 @@
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
-    def test = sh returnStdout: true, script: &quot;&quot;&quot;
+    String action = &apos;verify&apos;
+
+    def stream_id = sh returnStdout: true, script: &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@65.61.144.150 &apos;&apos;&apos;
-    cd /root/tempest/
-    stream_id=`cat .testrepository/next-stream`
-    echo \$stream_id
+    echo `cat /root/tempest/.testrepository/next-stream`
     &apos;&apos;&apos;
     &quot;&quot;&quot;
-    println test
+    
+    
+    println stream_id
 }
 </script>
     <sandbox>true</sandbox>
