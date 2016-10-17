@@ -101,7 +101,7 @@ node(&apos;agent-xl&apos;) {
 def rolling_upgrade(to_release = &apos;master&apos;) {
 
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //ansiblePlaybook extras: &quot;-e openstack_release=${to_release} -e main_path=${main_path}&quot;, inventory: &apos;localhost,&apos;, playbook: &apos;run_pre_upgrade.yaml&apos;, sudoUser: null
+    //ansiblePlaybook extras: &quot;-e openstack_release=${to_release}&quot;, inventory: &apos;localhost,&apos;, playbook: &apos;prepare_for_upgrade.yaml&apos;, sudoUser: null
 
 }</script>
     <sandbox>true</sandbox>
