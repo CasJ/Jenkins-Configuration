@@ -21,6 +21,8 @@ node(&apos;onmetal-provisioner&apos;) {
     echo `cat /root/tempest/.testrepository/next-stream`
     &apos;&apos;&apos;
     &quot;&quot;&quot;
+    println action
+    println stream_id
     if (action == &apos;verify&apos;) {
         file_name = &quot;${action}_${stream_id}&quot;
         println &apos;entered if&apos;
@@ -29,7 +31,7 @@ node(&apos;onmetal-provisioner&apos;) {
         println &apos;did not enter if&apos;
     }
     
-    println action
+    println file_name
 }
 </script>
     <sandbox>true</sandbox>
