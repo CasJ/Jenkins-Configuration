@@ -13,7 +13,7 @@
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
-    String action = &apos;verify&apos;
+    String action = &apos;create&apos;
     String file_name
 
     def stream_id = sh returnStdout: true, script: &quot;&quot;&quot;
@@ -21,14 +21,11 @@ node(&apos;onmetal-provisioner&apos;) {
     echo `cat /root/tempest/.testrepository/next-stream`
     &apos;&apos;&apos;
     &quot;&quot;&quot;
-    println action
-    println stream_id
+    
     if (action == &apos;verify&apos;) {
         file_name = &quot;${action}_${stream_id}&quot;
-        println &apos;entered if&apos;
     } else {
         file_name = action
-        println &apos;did not enter if&apos;
     }
     
     println file_name
