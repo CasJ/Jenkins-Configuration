@@ -105,8 +105,8 @@ def rolling_upgrade(to_release = &apos;master&apos;) {
     sh &apos;whoami&apos;
     //sh &quot;&quot;&quot;
     
-    sudo ansible-playbook prepare_for_upgrade.yaml -i localhost, -e openstack_release=${to_release}
-    &quot;&quot;&quot;
+    //sudo ansible-playbook prepare_for_upgrade.yaml -i localhost, -e openstack_release=${to_release}
+    //&quot;&quot;&quot;
 
 }</script>
     <sandbox>true</sandbox>
