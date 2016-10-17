@@ -8,17 +8,12 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.18">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
     <script>String from_release = &apos;cas&apos;
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
-    sh &quot;&quot;&quot;
-    ssh -o StrictHostKeyChecking=no root@65.61.144.54 &apos;&apos;&apos;
-    echo &quot;Inside the rally server&quot;
-    sleep 20
-    &apos;&apos;&apos; &amp;
-    &quot;&quot;&quot;
+    println now.toTimestamp()
     
 }
 </script>
