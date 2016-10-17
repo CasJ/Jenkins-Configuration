@@ -22,7 +22,7 @@ node(&apos;onmetal-provisioner&apos;) {
     &apos;&apos;&apos;
     &quot;&quot;&quot;
     if (action == &apos;verify&apos;) {
-        file_name = action + &apos;_&apos; + stream_id
+        file_name = &quot;${action}_${stream_id}&quot;
     } else {
         file_name = action
     }
