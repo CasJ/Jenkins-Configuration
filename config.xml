@@ -102,7 +102,7 @@
         <string>Joshs_sandbox</string>
         <string>onMetal_Sandbox</string>
         <string>OnMetal_Simple_Upgrade_Liberty-Mitaka</string>
-        <string>OnMetal_Simple_Upgrade_Mitaka-Master</string>
+        <string>OnMetal_Simple_Upgrade_Mitaka-Newton</string>
       </jobNames>
       <jobFilters/>
       <columns>
