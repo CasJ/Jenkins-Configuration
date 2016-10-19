@@ -11,24 +11,8 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
     <script>String from_release = &apos;cas&apos;
 stage &apos;Sandbox&apos;
-node(&apos;onmetal-provisioner&apos;) {
-
-    String action = &apos;create&apos;
-    String file_name
-
-    def stream_id = sh returnStdout: true, script: &quot;&quot;&quot;
-    ssh -o StrictHostKeyChecking=no root@65.61.144.150 &apos;&apos;&apos;
-    echo `cat /root/tempest/.testrepository/next-stream`
-    &apos;&apos;&apos;
-    &quot;&quot;&quot;
-    
-    if (action == &apos;verify&apos;) {
-        file_name = &quot;${action}_${stream_id}&quot;
-    } else {
-        file_name = action
-    }
-    
-    println file_name
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
+    println &quot;LUZ PRUEBA&quot;
 }
 </script>
     <sandbox>true</sandbox>
