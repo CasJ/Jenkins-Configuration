@@ -29,20 +29,34 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>datacenter</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>&apos;dfw&apos;</string>
+              <string>&apos;iad&apos;</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.18">
-    <script>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
+    <script>#!/usr/bin/env groovy
+
 def osa, common
 String workspace_dir 
 String onmetal_ip
-String datacenter = &apos;dfw&apos;
-//String from_release = &apos;liberty&apos;
-//String to_release = &apos;stable/mitaka&apos;
+
+// Jenkins must provide these two variables as parameters or the build 
+// will fail:
+//  - from_release
+//  - to_release
+//  - datacenter [&apos;dfw&apos; | &apos;iad&apos;]
 
 
 // *******************************
@@ -69,7 +83,7 @@ node(&apos;master&apos;) {
 node(&apos;onmetal-provisioner&apos;) {
 
     // Wait for the agent to finish running cloud-init
-    //common.wait_for_agent_setup()
+    common.wait_for_agent_setup()
 
     // Get the workspace directory in the agent
     workspace_dir = pwd()
@@ -116,10 +130,10 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
     osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
-    
-    // Run the persistent resources creation
-    //osa.install_persistent_resources_tests()
-    //osa.run_persistent_resources_tests(&apos;create&apos;)
+
+    // Install and run the persistent resources creation
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
 
 }
 
@@ -131,8 +145,6 @@ stage &apos;Upgrade&apos;
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
  
-    // Josh&apos;s code for API uptime trigger
-    // Josh&apos;s code for during tests trigger
     osa.upgrade_openstack(to_release)
     
 }
@@ -147,8 +159,8 @@ node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
     osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
-    
-    // Run the persistent resources validation
+
+    // Run the persistent resources validation then clean them up
     osa.run_persistent_resources_tests(&apos;verify&apos;)
     osa.run_persistent_resources_tests(&apos;cleanup&apos;)
     
@@ -169,13 +181,12 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    //osa.delete_virtual_resources()
+    osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    //osa.delete_onmetal(datacenter)
+    osa.delete_onmetal(datacenter)
 
-}
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
