@@ -119,13 +119,8 @@ node(&apos;onmetal-provisioner&apos;) {
     // Add Josh&apos;s API uptime here
       //Steve H. Will handle this part
     
-    //Pull during test from repo and create dir during-upgrade-tests
-    dir(&apos;during-upgrade-tests&apos;) {
-        git &apos;https://github.com/lamarwhitej/test_rolling_upgrades_during&apos;
-
     //Transfer During test and install requirements
-    osa.setup_during_test(onmetal_ip)
-    }
+    osa.install_during_upgrade_tests(onmetal_ip)
     
     //Start During Tests
     osa.start_during_test(onmetal_ip)
