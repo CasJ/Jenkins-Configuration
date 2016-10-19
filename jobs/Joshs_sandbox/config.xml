@@ -107,7 +107,18 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
 }
-
+// *******************************
+stage &apos;Start During Test&apos;
+// *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;onmetal-provisioner&apos;) {
+    
+    //Setup during upgrade test
+    osa.install_during_upgrade_tests(onmetal_ip)
+    
+    //Start During Upgrade Test
+    osa.start_during_test(onmetal_ip)
+}
 
 // *******************************
 stage &apos;Upgrade&apos;
@@ -116,31 +127,19 @@ stage &apos;Upgrade&apos;
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
     
-    // Add Josh&apos;s API uptime here
-      //Steve H. Will handle this part
-    
-    //Transfer During test and install requirements
-    osa.install_during_upgrade_tests(onmetal_ip)
-    
-    //Start During Tests
-    osa.start_during_test(onmetal_ip)
-    
+    //Run upgrade
     //osa.upgrade_openstack(to_release)
-    
-    //Stop During Test
-    osa.stop_during_test(onmetal_ip)
 }
 
 // *******************************
-stage &apos;Metrics Aggregation&apos;
+stage &apos;Stop During Test&apos;
 // *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;onmetal-provisioner&apos;) {
 
-node(&apos;elasticsearch&apos;){
-  git &apos;https://github.com/lamarwhitej/elastic-benchmark.git&apos;
-  osa.aggregate_results(onmetal_ip)
-  //osa.parse_results()
+    //Stop During Upgrade Test
+    osa.stop_during_test(onmetal_ip)  
 }
-
     
 // *******************************
 stage &apos;Post-Upgrade Validation&apos;
@@ -158,7 +157,11 @@ node(&apos;onmetal-provisioner&apos;) {
 // *******************************
 stage &apos;Reporting&apos;
 // *******************************
-echo &apos;To be defined&apos;
+node(&apos;elasticsearch&apos;){
+  git &apos;https://github.com/lamarwhitej/elastic-benchmark.git&apos;
+  osa.aggregate_results(onmetal_ip)
+  //osa.parse_results()
+}
 
 
 // *******************************
