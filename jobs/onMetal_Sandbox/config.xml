@@ -116,7 +116,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
