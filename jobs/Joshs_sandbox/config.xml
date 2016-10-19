@@ -57,7 +57,8 @@ node(&apos;master&apos;) {
     
 }
 
-node(&apos;onmetal-provisioner&apos;) {
+//node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;){
 
     // Wait for the agent to finish running cloud-init
     common.wait_for_agent_setup()
@@ -85,7 +86,7 @@ stage &apos;Deployment&apos;
 // *******************************
 
 echo &apos;Deploying OpenStack using OSA&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
 
     // Deploy OpenStack with OSA
     //osa.deploy_openstack()
@@ -101,7 +102,7 @@ stage &apos;Post-Deployment Validation&apos;
 // *******************************
 
 echo &apos;Validating the OpenStack deployment&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
 
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
@@ -113,7 +114,7 @@ node(&apos;onmetal-provisioner&apos;) {
 stage &apos;Upgrade Testing Start&apos;
 // *******************************
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
     
     //Setup during upgrade test
     osa.install_during_upgrade_tests(onmetal_ip)
@@ -128,7 +129,7 @@ stage &apos;Upgrade&apos;
 // *******************************
 
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
     
     //Run upgrade
     //osa.upgrade_openstack(to_release)
@@ -138,7 +139,7 @@ node(&apos;onmetal-provisioner&apos;) {
 stage &apos;Upgrade Testing Stop&apos;
 // *******************************
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
 
     //Stop During Upgrade Test
     osa.stop_during_test(onmetal_ip)  
@@ -149,7 +150,7 @@ stage &apos;Post-Upgrade Validation&apos;
 // *******************************
 
 echo &apos;Validating the OpenStack deployment after the upgrade&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
  
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
@@ -186,7 +187,7 @@ stage &apos;Clean Up&apos;
 // *******************************
 
 echo &apos;Deleting the onMetal host and its VMs&apos;
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;ci-onmetal-provisioner-9021&apos;) {
 
     // Delete VMs
     //osa.delete_virtual_resources()
