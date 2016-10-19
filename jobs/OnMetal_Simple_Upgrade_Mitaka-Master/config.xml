@@ -14,7 +14,7 @@
         <hudson.model.StringParameterDefinition>
           <name>to_release</name>
           <description>Parameter used to specify what OpenStack release to upgrade to.</description>
-          <defaultValue>master</defaultValue>
+          <defaultValue>stable/newton</defaultValue>
         </hudson.model.StringParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
@@ -22,24 +22,150 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.19">
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.0.0">
-      <configVersion>2</configVersion>
-      <userRemoteConfigs>
-        <hudson.plugins.git.UserRemoteConfig>
-          <url>https://github.com/osic/qa-jenkins-onmetal.git</url>
-        </hudson.plugins.git.UserRemoteConfig>
-      </userRemoteConfigs>
-      <branches>
-        <hudson.plugins.git.BranchSpec>
-          <name>*/master</name>
-        </hudson.plugins.git.BranchSpec>
-      </branches>
-      <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-      <submoduleCfg class="list"/>
-      <extensions/>
-    </scm>
-    <scriptPath>jenkins/onmetal_simple_upgrade.pipeline</scriptPath>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
+    <script>#!/usr/bin/env groovy
+
+def osa, common
+String workspace_dir 
+String onmetal_ip
+String datacenter = &apos;iad&apos;
+
+// Jenkins must provide these two variables as parameters or the build 
+// will fail:
+//  - from_release
+//  - to_release
+
+
+// *******************************
+stage &apos;Pre-Deployment&apos;
+// *******************************
+
+echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
+node(&apos;master&apos;) {
+    
+    // Copy the Rax key from the Jenkins master
+    dir(&apos;/home/ubuntu&apos;) {
+        stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
+    }
+
+    // Load the external functions using master since the git command
+    // might not be available at the agent yet
+    fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+        common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
+        osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
+    }
+    
+}
+
+node(&apos;onmetal-provisioner&apos;) {
+
+    // Wait for the agent to finish running cloud-init
+    common.wait_for_agent_setup()
+
+    // Get the workspace directory in the agent
+    workspace_dir = pwd()
+    echo &quot;The workspace directory is ${workspace_dir}&quot;
+
+    // Download the project repository and paste the Rax key
+    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    unstash &apos;raxpub&apos;
+    
+    // Provision the onMetal host
+    onmetal_ip = osa.onmetal_provision(datacenter)
+
+    // Provision the VMs in the onMetal host
+    osa.vm_provision()
+
+    // Prepare the VMs to run OpenStack
+    osa.vm_preparation_for_osa(from_release)
+
+}
+
+
+// *******************************
+stage &apos;Deployment&apos;
+// *******************************
+
+echo &apos;Deploying OpenStack using OSA&apos;
+node(&apos;onmetal-provisioner&apos;) {
+
+    // Deploy OpenStack with OSA
+    osa.deploy_openstack()
+    
+    // Install and configure Tempest on the onMetal host
+    osa.configure_tempest()  
+ 
+}
+
+
+// *******************************
+stage &apos;Post-Deployment Validation&apos;
+// *******************************
+
+echo &apos;Validating the OpenStack deployment&apos;
+node(&apos;onmetal-provisioner&apos;) {
+
+    // Run the tempest tests
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+
+    // Install and run the persistent resources creation
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
+
+}
+
+
+// *******************************
+stage &apos;Upgrade&apos;
+// *******************************
+
+echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
+node(&apos;onmetal-provisioner&apos;) {
+ 
+    osa.upgrade_openstack(to_release)
+    
+}
+
+
+// *******************************
+stage &apos;Post-Upgrade Validation&apos;
+// *******************************
+
+echo &apos;Validating the OpenStack deployment after the upgrade&apos;
+node(&apos;onmetal-provisioner&apos;) {
+ 
+    // Run the tempest tests
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+
+    // Run the persistent resources validation then clean them up
+    osa.run_persistent_resources_tests(&apos;verify&apos;)
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;)
+    
+}
+
+
+// *******************************
+stage &apos;Reporting&apos;
+// *******************************
+echo &apos;To be defined&apos;
+
+
+// *******************************
+stage &apos;Clean Up&apos;
+// *******************************
+
+echo &apos;Deleting the onMetal host and its VMs&apos;
+node(&apos;onmetal-provisioner&apos;) {
+
+    // Delete VMs
+    osa.delete_virtual_resources()
+    
+    // Delete the onMetal host
+    osa.delete_onmetal(datacenter)
+
+}
+</script>
+    <sandbox>true</sandbox>
   </definition>
   <triggers/>
 </flow-definition>
