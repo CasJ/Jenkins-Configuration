@@ -16,6 +16,16 @@
           <description>Parameter used to specify what OpenStack release to upgrade to.</description>
           <defaultValue>stable/mitaka</defaultValue>
         </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>datacenter</name>
+          <description>The Rax public cloud datacenter where OnMetal server will be provisioned</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>dfw</string>
+              <string>iad</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
