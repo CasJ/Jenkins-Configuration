@@ -184,7 +184,8 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    osa.delete_onmetal(datacenter)
+    //osa.delete_onmetal(datacenter)
+    ansiblePlaybook inventory: &apos;hosts&apos;, playbook: &apos;destroy_onmetal.yaml&apos;, sudoUser: null, tags: &quot;${datacenter}&quot;, extras: &apos;-f 0&apos;
 
 }</script>
     <sandbox>true</sandbox>
