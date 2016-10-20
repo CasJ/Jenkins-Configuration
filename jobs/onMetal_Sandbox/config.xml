@@ -90,17 +90,17 @@ node(&apos;onmetal-provisioner&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //unstash &apos;raxpub&apos;
+    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    //onmetal_ip = osa.onmetal_provision(datacenter)
+    onmetal_ip = osa.onmetal_provision(datacenter)
 
     // Provision the VMs in the onMetal host
-    //osa.vm_provision()
+    osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    //osa.vm_preparation_for_osa(from_release)
+    osa.vm_preparation_for_osa(from_release)
 
 }
 
@@ -113,7 +113,7 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    //osa.deploy_openstack()
+    osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
     //osa.configure_tempest()  
@@ -145,7 +145,7 @@ stage &apos;Upgrade&apos;
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
  
-    //osa.upgrade_openstack(to_release)
+    osa.upgrade_openstack(to_release)
     
 }
 
@@ -181,11 +181,11 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    osa.delete_virtual_resources()
+    //osa.delete_virtual_resources()
     
     // Delete the onMetal host
     //osa.delete_onmetal(datacenter)
-    ansiblePlaybook inventory: &apos;hosts&apos;, playbook: &apos;destroy_onmetal.yaml&apos;, sudoUser: null, tags: &quot;${datacenter}&quot;, extras: &apos;-f 0&apos;
+    //ansiblePlaybook inventory: &apos;hosts&apos;, playbook: &apos;destroy_onmetal.yaml&apos;, sudoUser: null, tags: &quot;${datacenter}&quot;, extras: &apos;-f 0&apos;
 
 }</script>
     <sandbox>true</sandbox>
