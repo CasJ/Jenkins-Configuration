@@ -120,7 +120,7 @@ node(&apos;onmetal-provisioner&apos;) {
  
 }
 
-
+/*
 // *******************************
 stage &apos;Post-Deployment Validation&apos;
 // *******************************
@@ -129,24 +129,59 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
-    //osa.install_persistent_resources_tests()
-    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
 
 }
 
 
+// *******************************
+stage &apos;Upgrade Testing Start&apos;
+// *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;onmetal-provisioner&apos;) {
+    
+    //Setup during upgrade test
+    osa.install_during_upgrade_tests()
+    
+    //Start During Upgrade Test
+    osa.start_during_test()
+
+    // Setup API uptime tests
+    osa.install_api_uptime_tests()
+    
+    // Start API uptime tests
+    osa.start_api_uptime_tests()
+}
+
+*/
 // *******************************
 stage &apos;Upgrade&apos;
 // *******************************
 
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
 node(&apos;onmetal-provisioner&apos;) {
- 
+    
+    //Running upgrade
     osa.upgrade_openstack(to_release)
     
+}
+
+/*
+// *******************************
+stage &apos;Upgrade Testing Stop&apos;
+// *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;onmetal-provisioner&apos;) {
+
+    //Stop During Upgrade Test
+    osa.stop_during_test()  
+
+    // Stop API uptime tests
+    osa.stop_api_uptime_tests()  
 }
 
 
@@ -158,19 +193,29 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    //osa.run_persistent_resources_tests(&apos;verify&apos;)
-    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;)
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;)
     
 }
-
+*/
 
 // *******************************
 stage &apos;Reporting&apos;
 // *******************************
-echo &apos;To be defined&apos;
+echo &apos;To be defined further&apos;
+
+
+//node(&apos;elasticsearch&apos;){
+    
+    //Pull data from onmetal places it on ES vm
+  //  osa.aggregate_results(onmetal_ip)
+
+    //Push data to ES
+    
+//}
 
 
 // *******************************
@@ -185,9 +230,9 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Delete the onMetal host
     //osa.delete_onmetal(datacenter)
-    //ansiblePlaybook inventory: &apos;hosts&apos;, playbook: &apos;destroy_onmetal.yaml&apos;, sudoUser: null, tags: &quot;${datacenter}&quot;, extras: &apos;-f 0&apos;
 
-}</script>
+}
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
