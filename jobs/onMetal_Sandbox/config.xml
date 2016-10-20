@@ -34,8 +34,8 @@
           <description></description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>&apos;dfw&apos;</string>
-              <string>&apos;iad&apos;</string>
+              <string>dfw</string>
+              <string>iad</string>
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
@@ -116,11 +116,11 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
-/*
+
 // *******************************
 stage &apos;Post-Deployment Validation&apos;
 // *******************************
@@ -157,7 +157,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.start_api_uptime_tests()
 }
 
-*/
+
 // *******************************
 stage &apos;Upgrade&apos;
 // *******************************
@@ -170,7 +170,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
 }
 
-/*
+
 // *******************************
 stage &apos;Upgrade Testing Stop&apos;
 // *******************************
@@ -200,7 +200,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.run_persistent_resources_tests(&apos;cleanup&apos;)
     
 }
-*/
+
 
 // *******************************
 stage &apos;Reporting&apos;
@@ -208,14 +208,14 @@ stage &apos;Reporting&apos;
 echo &apos;To be defined further&apos;
 
 
-//node(&apos;elasticsearch&apos;){
+node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-  //  osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results(onmetal_ip)
 
     //Push data to ES
     
-//}
+}
 
 
 // *******************************
@@ -226,13 +226,12 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    //osa.delete_virtual_resources()
+    osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    //osa.delete_onmetal(datacenter)
+    osa.delete_onmetal(datacenter)
 
-}
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
