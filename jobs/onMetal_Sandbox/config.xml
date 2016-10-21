@@ -65,7 +65,7 @@ stage &apos;Pre-Deployment&apos;
 
 echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
 node(&apos;master&apos;) {
-/*    
+
     // Copy the Rax key from the Jenkins master
     dir(&apos;/home/ubuntu&apos;) {
         stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
@@ -77,7 +77,7 @@ node(&apos;master&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
-  */  
+
 }
 
 node(&apos;onmetal-provisioner&apos;) {
