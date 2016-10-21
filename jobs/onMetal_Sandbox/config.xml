@@ -65,7 +65,7 @@ stage &apos;Pre-Deployment&apos;
 
 echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
 node(&apos;master&apos;) {
-    
+/*    
     // Copy the Rax key from the Jenkins master
     dir(&apos;/home/ubuntu&apos;) {
         stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
@@ -77,11 +77,11 @@ node(&apos;master&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
-    
+  */  
 }
 
 node(&apos;onmetal-provisioner&apos;) {
-
+/*
     // Wait for the agent to finish running cloud-init
     common.wait_for_agent_setup()
 
@@ -101,7 +101,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Prepare the VMs to run OpenStack
     osa.vm_preparation_for_osa(from_release)
-
+*/
 }
 
 
@@ -113,7 +113,7 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    osa.deploy_openstack()
+    //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
     //osa.configure_tempest()  
@@ -168,8 +168,8 @@ node(&apos;onmetal-provisioner&apos;) {
     //Running upgrade
     //osa.upgrade_openstack(to_release)
 
-    echo &quot;Running the following playbook: upgrade_osa, to upgrade to the following release: ${release}&quot;
-    ansiblePlaybook extras: &quot;-e openstack_release=${to_release} -vvvv&quot;, inventory: &apos;hosts&apos;, playbook: &apos;upgrade_osa.yaml&apos;, sudoUser: null  
+    //echo &quot;Running the following playbook: upgrade_osa, to upgrade to the following release: ${release}&quot;
+    //ansiblePlaybook extras: &quot;-e openstack_release=${to_release} -vvvv&quot;, inventory: &apos;hosts&apos;, playbook: &apos;upgrade_osa.yaml&apos;, sudoUser: null  
 
 }
 
@@ -229,10 +229,10 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    //osa.delete_virtual_resources()
+    osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    //osa.delete_onmetal(datacenter)
+    osa.delete_onmetal(datacenter)
 
 }</script>
     <sandbox>true</sandbox>
