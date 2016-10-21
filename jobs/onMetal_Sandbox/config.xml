@@ -65,12 +65,12 @@ stage &apos;Pre-Deployment&apos;
 
 echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
 node(&apos;master&apos;) {
-    
+/*    
     // Copy the Rax key from the Jenkins master
     dir(&apos;/home/ubuntu&apos;) {
         stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
     }
-
+*/
     // Load the external functions using master since the git command
     // might not be available at the agent yet
     fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
@@ -81,7 +81,7 @@ node(&apos;master&apos;) {
 }
 
 node(&apos;onmetal-provisioner&apos;) {
-
+/*
     // Wait for the agent to finish running cloud-init
     common.wait_for_agent_setup()
 
@@ -101,7 +101,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Prepare the VMs to run OpenStack
     osa.vm_preparation_for_osa(from_release)
-
+*/
 }
 
 
@@ -113,7 +113,7 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    osa.deploy_openstack()
+    //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
     //osa.configure_tempest()  
