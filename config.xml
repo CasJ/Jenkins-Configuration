@@ -71,7 +71,6 @@
         <hardwareId>2</hardwareId>
         <networkId>fd0e26e9-5705-491e-b8ad-4872880c3d77</networkId>
         <userDataId>jenkins.plugins.openstack.compute.UserDataConfig.1470757175885</userDataId>
-        <instanceCap>5</instanceCap>
         <securityGroups>ci-infra-secgrp</securityGroups>
         <keyPairName>ci-infra-kp</keyPairName>
         <numExecutors>5</numExecutors>
