@@ -65,7 +65,7 @@ stage &apos;Pre-Deployment&apos;
 
 echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
 node(&apos;master&apos;) {
-
+    
     // Copy the Rax key from the Jenkins master
     dir(&apos;/home/ubuntu&apos;) {
         stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
@@ -73,11 +73,11 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/dlux/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
-
+    
 }
 
 node(&apos;onmetal-provisioner&apos;) {
@@ -116,7 +116,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
@@ -129,11 +129,12 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
-    //osa.install_persistent_resources_tests()
-    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -145,16 +146,16 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
-    //osa.start_during_test()
+    osa.start_during_test()
 
     // Setup API uptime tests
-    //osa.install_api_uptime_tests()
+    osa.install_api_uptime_tests()
     
     // Start API uptime tests
-    //osa.start_api_uptime_tests()
+    osa.start_api_uptime_tests()
 }
 
 
@@ -166,11 +167,8 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
-    osa.upgrade_openstack(to_release)
-
-    //echo &quot;Running the following playbook: upgrade_osa, to upgrade to the following release: ${release}&quot;
-    //ansiblePlaybook extras: &quot;-e openstack_release=${to_release} -vvvv&quot;, inventory: &apos;hosts&apos;, playbook: &apos;upgrade_osa.yaml&apos;, sudoUser: null  
-
+    //osa.upgrade_openstack(to_release)
+    sleep time: 5, unit: &apos;MINUTES&apos;
 }
 
 
@@ -181,10 +179,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    //osa.stop_during_test()  
+    osa.stop_during_test()  
 
     // Stop API uptime tests
-    //osa.stop_api_uptime_tests()  
+    osa.stop_api_uptime_tests()  
 }
 
 
@@ -196,11 +194,11 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    //osa.run_persistent_resources_tests(&apos;verify&apos;)
-    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;)
     
 }
 
@@ -214,7 +212,7 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    //osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results(onmetal_ip)
 
     //Push data to ES
     
