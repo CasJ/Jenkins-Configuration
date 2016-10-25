@@ -81,7 +81,7 @@
       </slaveOptions>
     </jenkins.plugins.openstack.compute.JCloudsCloud>
   </clouds>
-  <quietPeriod>5</quietPeriod>
+  <quietPeriod>0</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>
     <hudson.model.AllView>
