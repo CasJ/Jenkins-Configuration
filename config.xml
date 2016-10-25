@@ -5,7 +5,7 @@
   </disabledAdministrativeMonitors>
   <version>2.19.1</version>
   <numExecutors>5</numExecutors>
-  <mode>EXCLUSIVE</mode>
+  <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
     <denyAnonymousReadAccess>false</denyAnonymousReadAccess>
