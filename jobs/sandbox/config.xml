@@ -11,7 +11,7 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
     <script>String from_release = &apos;cas&apos;
 stage &apos;Sandbox&apos;
-node(&apos;master&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
     println &quot;LUZ PRUEBA&quot;
 }
 </script>
