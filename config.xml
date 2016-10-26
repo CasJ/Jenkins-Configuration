@@ -43,7 +43,9 @@
           <jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
             <name>ci-openstack-agent-small</name>
             <labelString>agent-sm</labelString>
-            <slaveOptions/>
+            <slaveOptions>
+              <floatingIpPool>GATEWAY_NET</floatingIpPool>
+            </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
           <jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
             <name>ci-onmetal-provisioner</name>
