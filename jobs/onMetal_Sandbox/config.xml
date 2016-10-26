@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.7">
+<flow-definition plugin="workflow-job@2.8">
   <actions/>
   <description>Job used for testing a debugging the pipeline</description>
   <keepDependencies>false</keepDependencies>
