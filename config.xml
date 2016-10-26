@@ -45,6 +45,7 @@
             <labelString>agent-sm</labelString>
             <slaveOptions>
               <floatingIpPool>GATEWAY_NET</floatingIpPool>
+              <availabilityZone>RegionOne</availabilityZone>
             </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
           <jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
