@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.7">
+<flow-definition plugin="workflow-job@2.8">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -11,8 +11,9 @@
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
     <script>String from_release = &apos;cas&apos;
 stage &apos;Sandbox&apos;
-node(&apos;onmetal-provisioner&apos;) {
-    println &quot;LUZ PRUEBA&quot;
+node(&apos;master&apos;) {
+    println &quot;Testing master&quot;
+    sh &apos;hostname&apos;
 }
 </script>
     <sandbox>true</sandbox>
