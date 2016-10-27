@@ -5,7 +5,7 @@
   </disabledAdministrativeMonitors>
   <version>2.19.1</version>
   <numExecutors>5</numExecutors>
-  <mode>EXCLUSIVE</mode>
+  <mode>NORMAL</mode>
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
     <denyAnonymousReadAccess>false</denyAnonymousReadAccess>
@@ -24,7 +24,7 @@
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
-    <jenkins.plugins.openstack.compute.JCloudsCloud plugin="openstack-cloud@2.12">
+    <jenkins.plugins.openstack.compute.JCloudsCloud plugin="openstack-cloud@2.13">
       <name>Cloud1</name>
       <endPointUrl>https://cloud1.osic.org:5000/v2.0</endPointUrl>
       <identity>osic-engineering:castulo.martinez</identity>
