@@ -10,10 +10,15 @@
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
     <script>String from_release = &apos;cas&apos;
+def common, osa
 stage &apos;Sandbox&apos;
 node(&apos;master&apos;) {
     println &quot;Testing master&quot;
     sh &apos;hostname&apos;
+    fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+        common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
+        osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
+    }
 }
 </script>
     <sandbox>true</sandbox>
