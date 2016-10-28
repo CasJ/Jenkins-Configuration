@@ -19,6 +19,8 @@ node(&apos;onmetal-provisioner&apos;) {
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
     cd rolling-upgrades-during-test
     sleep 10
+    echo &quot;from host&quot;
+    hostname
     &apos;&apos;&apos; &amp;
     &quot;&quot;&quot; 
     println &apos;hello&apos;
