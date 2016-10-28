@@ -116,7 +116,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    osa.configure_tempest()  
+    //osa.configure_tempest()  
  
 }
 
@@ -129,12 +129,12 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
-    osa.install_persistent_resources_tests()
-    osa.run_persistent_resources_tests(&apos;create&apos;)
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    //osa.install_persistent_resources_tests()
+    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -146,7 +146,7 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests()
+    //osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
     osa.start_during_test()
