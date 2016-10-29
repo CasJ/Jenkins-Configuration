@@ -149,7 +149,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
-    osa.start_during_test()
+    //osa.start_during_test()
 
     // Setup API uptime tests
     osa.install_api_uptime_tests()
