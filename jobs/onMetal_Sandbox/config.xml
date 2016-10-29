@@ -146,13 +146,13 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
     osa.start_during_test()
 
     // Setup API uptime tests
-    osa.setup_api_uptime_tests()
+    osa.install_api_uptime_tests()
     
     // Start API uptime tests
     osa.start_api_uptime_tests()
@@ -169,6 +169,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //Running upgrade
     //osa.upgrade_openstack(to_release)
     sleep time: 5, unit: &apos;MINUTES&apos;
+    
 }
 
 
@@ -212,9 +213,10 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results()
 
     //Push data to ES
+    osa.parse_results()
     
 }
 
