@@ -91,7 +91,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Download the project repository and paste the Rax key
     //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //unstash &apos;raxpub&apos;
+    unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
@@ -134,7 +134,7 @@ node(&apos;onmetal-provisioner&apos;) {
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
     //osa.run_persistent_resources_tests(&apos;create&apos;)
-    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -146,13 +146,13 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
     osa.start_during_test()
 
     // Setup API uptime tests
-    osa.setup_api_uptime_tests()
+    osa.install_api_uptime_tests()
     
     // Start API uptime tests
     osa.start_api_uptime_tests()
@@ -168,7 +168,8 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
-    sleep time: 5, unit: &apos;MINUTES&apos;
+    sleep time: 3, unit: &apos;MINUTES&apos;
+    
 }
 
 
@@ -212,9 +213,10 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results()
 
     //Push data to ES
+    osa.parse_results()
     
 }
 
