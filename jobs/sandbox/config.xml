@@ -55,21 +55,14 @@ node(&apos;onmetal-provisioner&apos;) {
     
     if (results.contains(&apos;- Failed:&apos;) == true) {
         
-        println &apos;Failed tests were found&apos;
         failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
-        failures = failures.substring(0,failures.indexOf(newline))
-        failures = failures.toInteger()
-        println failures
-        //failures.substring(0,failures.indexOf(newline))
-        //println results.substring(results.indexOf(&apos;- Failed:&apos;) + 10, results.indexOf(newline, results.indexOf(&apos;- Failed:&apos;) + 10))
-    } else {
-        println &apos;No failures&apos;
-    }
-    
-    if (failures &gt; 1) {
-        println &apos;Build should stop&apos;
-    } else {
-        println &apos;The build can continue&apos;
+        failures = failures.substring(0,failures.indexOf(newline)).toInteger()
+        if (failures &gt; 1) {
+            println &quot;${failures} tests from the Tempest smoke tests failed, stopping the pipeline.&quot;
+            raise
+        } else {
+            println &apos;The Tempest smoke tests were successfull.&apos;
+        }
     }
     
 }
