@@ -65,6 +65,10 @@ node(&apos;onmetal-provisioner&apos;) {
         println &apos;No failures&apos;
     }
     
+    if (failures &gt; 1) {
+        println &apos;Build should stop&apos;
+    }
+    
 }
 </script>
     <sandbox>true</sandbox>
