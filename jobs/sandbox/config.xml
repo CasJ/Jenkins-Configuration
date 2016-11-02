@@ -9,19 +9,22 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
-    <script>String from_release = &apos;cas&apos;
-def common, osa
+    <script>
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
-    def host_ip = &apos;104.239.246.198&apos;
-    sh &quot;&quot;&quot;
+    def host_ip = &apos;65.61.190.78&apos;
+    
+    // Run the tests and store the results in ~/subunit/before
+    sh returnStdout: true, script: &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
-    cd rolling-upgrades-during-test
-    python call_test.py -d
-    &apos;&apos;&apos; &amp;
-    &quot;&quot;&quot; 
-    println &apos;hello&apos;
+    cd /root/tempest/
+    stream_id=`cat .testrepository/next-stream`
+    ostestr --no-slowest --regex smoke
+    mkdir -p /root/subunit/smoke/
+    cp .testrepository/\$stream_id /root/subunit/smoke/${results_file}
+    &apos;&apos;&apos;
+    &quot;&quot;&quot;
     
 }
 </script>
