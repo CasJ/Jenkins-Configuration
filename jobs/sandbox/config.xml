@@ -13,7 +13,7 @@
 stage &apos;Sandbox&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
-    throw new Exception()
+    error &apos;my own error&apos;
     def host_ip = &apos;65.61.190.78&apos;
     def resulst
     int index
