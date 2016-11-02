@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.7">
+<flow-definition plugin="workflow-job@2.8">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -22,7 +22,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.19">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
     <script>#!/usr/bin/env groovy
 
 def osa, common
@@ -50,7 +50,7 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/lamarwhitej/qa-jenkins-onmetal&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;git@github.com:osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
@@ -121,6 +121,7 @@ node(&apos;ci-onmetal-provisioner-9021&apos;) {
     
     //Start During Upgrade Test
     osa.start_during_test(onmetal_ip)
+    sleep 20
 }
 
 
@@ -171,11 +172,11 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    osa.aggregate_results(onmetal_ip)
+    //osa.aggregate_results(onmetal_ip)
 
     //Parse persistent resouces data
-    osa.setup_parse_persistent_resources(onmetal_ip)
-    osa.parse_persistent_resources_tests(onmetal_ip)
+    //osa.setup_parse_persistent_resources(onmetal_ip)
+    //osa.parse_persistent_resources_tests(onmetal_ip)
 
     //Push data to ES
     
