@@ -37,7 +37,7 @@ node(&apos;onmetal-provisioner&apos;) {
      - Skipped: 12
      - Expected Fail: 0
      - Unexpected Success: 0
-     - Failed: 1
+     - Failed: 10
     Sum of execute time for each test: 922.9890 sec.
     
     ==============
@@ -56,7 +56,6 @@ node(&apos;onmetal-provisioner&apos;) {
         
         println &apos;Failed tests were found&apos;
         def failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
-        println failures.indexOf(newline)
         println failures.substring(0,failures.indexOf(newline))
         //println failures
         //failures.substring(0,failures.indexOf(newline))
