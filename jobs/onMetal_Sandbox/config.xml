@@ -117,7 +117,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
@@ -130,7 +130,7 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
