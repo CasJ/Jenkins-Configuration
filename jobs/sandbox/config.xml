@@ -38,7 +38,7 @@ node(&apos;onmetal-provisioner&apos;) {
      - Skipped: 12
      - Expected Fail: 0
      - Unexpected Success: 0
-     - Failed: 10
+     - Failed: 1
     Sum of execute time for each test: 922.9890 sec.
     
     ==============
