@@ -21,7 +21,7 @@ node(&apos;onmetal-provisioner&apos;) {
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
     cd /root/tempest/
     stream_id=`cat .testrepository/next-stream`
-    ostestr --no-slowest --list
+    ostestr --list
     mkdir -p /root/subunit/smoke/
     cp .testrepository/\$stream_id /root/subunit/smoke/temp
     &apos;&apos;&apos;
