@@ -16,7 +16,7 @@ node(&apos;onmetal-provisioner&apos;) {
     def host_ip = &apos;65.61.190.78&apos;
     def resulst
     int index
-    String newline = System.getProperty(&quot;line.separator&quot;);
+    String newline = &quot;\n&quot;
     
     // Run the tests and store the results in ~/subunit/before
     //results = sh returnStdout: true, script: &quot;&quot;&quot;
