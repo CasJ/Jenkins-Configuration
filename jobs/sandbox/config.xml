@@ -56,7 +56,7 @@ node(&apos;onmetal-provisioner&apos;) {
         
         println &apos;Failed tests were found&apos;
         //first_index = results.indexOf(&apos;- Failed:&apos;)
-        failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
+        def failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
         println failures
         //failures.substring(0,failures.indexOf(newline))
         //println results.substring(results.indexOf(&apos;- Failed:&apos;) + 10, results.indexOf(newline, results.indexOf(&apos;- Failed:&apos;) + 10))
