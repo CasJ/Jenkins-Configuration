@@ -58,7 +58,7 @@ node(&apos;onmetal-provisioner&apos;) {
         println index
         r = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
         println r.indexOf(newline)
-        //println results.substring(results.indexOf(&apos;- Failed:&apos;) + 10, results.indexOf(newline))
+        println results.substring(results.indexOf(&apos;- Failed:&apos;) + 10, results.indexOf(newline, results.indexOf(&apos;- Failed:&apos;) + 10))
     } else {
         println &apos;No failures&apos;
     }
