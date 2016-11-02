@@ -16,6 +16,7 @@ node(&apos;onmetal-provisioner&apos;) {
     def host_ip = &apos;65.61.190.78&apos;
     def resulst
     int index
+    String newline = System.getProperty(&quot;line.separator&quot;);
     
     // Run the tests and store the results in ~/subunit/before
     //results = sh returnStdout: true, script: &quot;&quot;&quot;
@@ -55,7 +56,7 @@ node(&apos;onmetal-provisioner&apos;) {
         index = results.indexOf(&apos;- Failed:&apos;)
         println &apos;Failed tests were found&apos;
         println index
-        println results.substring(index)
+        println results.substring(results.indexOf(&apos;- Failed:&apos;) + 10, results.indexOf(newline))
     } else {
         println &apos;No failures&apos;
     }
