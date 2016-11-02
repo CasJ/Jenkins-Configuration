@@ -17,6 +17,7 @@ node(&apos;onmetal-provisioner&apos;) {
     def resulst
     int index
     String newline = &quot;\n&quot;
+    def failures
     
     // Run the tests and store the results in ~/subunit/before
     //results = sh returnStdout: true, script: &quot;&quot;&quot;
@@ -55,7 +56,7 @@ node(&apos;onmetal-provisioner&apos;) {
     if (results.contains(&apos;- Failed:&apos;) == true) {
         
         println &apos;Failed tests were found&apos;
-        def failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
+        failures = results.substring(results.indexOf(&apos;- Failed:&apos;) + 10)
         failures = failures.substring(0,failures.indexOf(newline))
         failures = failures.toInteger()
         println failures
