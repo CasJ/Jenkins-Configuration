@@ -117,7 +117,7 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;ci-onmetal-provisioner-6734&apos;) {
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests(onmetal_ip)
     
     //Start During Upgrade Test
     osa.start_during_test()
