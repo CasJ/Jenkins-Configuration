@@ -117,7 +117,7 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;ci-onmetal-provisioner-6734&apos;) {
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests(onmetal_ip)
+    osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
     osa.start_during_test()
@@ -172,7 +172,7 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    //osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results(onmetal_ip)
 
     //Parse persistent resouces data
     //osa.setup_parse_persistent_resources(onmetal_ip)
