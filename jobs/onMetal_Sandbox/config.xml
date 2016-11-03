@@ -214,7 +214,7 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    osa.aggregate_results()
+    osa.aggregate_results(onmetal_ip)
 
     //Push data to ES
     osa.parse_results()
