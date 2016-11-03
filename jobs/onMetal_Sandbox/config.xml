@@ -149,14 +149,14 @@ node(&apos;onmetal-provisioner&apos;) {
     //Setup during upgrade test
     osa.install_during_upgrade_tests()
     
+    // Setup API uptime tests
+    osa.install_api_uptime_tests()
+    
     //Start During Upgrade Test
     osa.start_during_test()
-
-    // Setup API uptime tests
-    //osa.install_api_uptime_tests()
     
     // Start API uptime tests
-    //osa.start_api_uptime_tests()
+    osa.start_api_uptime_tests()
 }
 
 
@@ -184,7 +184,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.stop_during_test()  
 
     // Stop API uptime tests
-    //osa.stop_api_uptime_tests()  
+    osa.stop_api_uptime_tests()  
 }
 
 
@@ -200,8 +200,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Run the persistent resources validation then clean them up
     osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    osa.run_persistent_resources_tests(&apos;cleanup&apos;)
-    
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 }
 
 
@@ -210,6 +209,12 @@ stage &apos;Reporting&apos;
 // *******************************
 echo &apos;To be defined further&apos;
 
+node(&apos;onmetal-provisioner&apos;){
+    
+    // Pase persistent resource results
+    osa.setup_parse_persistent_resources()
+    osa.parse_persistent_resources_tests()
+}
 
 node(&apos;elasticsearch&apos;){
     
