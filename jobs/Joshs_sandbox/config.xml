@@ -116,16 +116,16 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     // Setup API uptime tests
-    osa.install_api_uptime_tests()
+    osa.install_api_uptime_tests(onmetal_ip)
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests(onmetal_ip)
     
     //Start During Upgrade Test
-    osa.start_during_test()
+    osa.start_during_test(onmetal_ip)
     
     // Start API uptime tests
-    osa.start_api_uptime_tests()
+    osa.start_api_uptime_tests(onmetal_ip)
     sleep 20
 }
 
@@ -150,10 +150,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test()  
+    osa.stop_during_test(onmetal_ip)  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests()  
+    osa.stop_api_uptime_tests(onmetal_ip)  
 }
 
     
