@@ -115,18 +115,21 @@ stage &apos;Upgrade Testing Start&apos;
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
+    //Testing this out
+    osa.aggregate_parse_failed_smoke(onmetal_ip, &apos;before_upgrade&apos;)
+    
     // Setup API uptime tests
-    osa.install_api_uptime_tests(onmetal_ip)
+    //osa.install_api_uptime_tests(onmetal_ip)
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests(onmetal_ip)
+    //osa.install_during_upgrade_tests(onmetal_ip)
     
     //Start During Upgrade Test
-    osa.start_during_test(onmetal_ip)
+    //osa.start_during_test(onmetal_ip)
     
     // Start API uptime tests
-    osa.start_api_uptime_tests(onmetal_ip)
-    sleep 20
+    //osa.start_api_uptime_tests(onmetal_ip)
+    //sleep 20
 }
 
 
@@ -150,10 +153,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test(onmetal_ip)  
+    //osa.stop_during_test(onmetal_ip)  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests(onmetal_ip)  
+    //osa.stop_api_uptime_tests(onmetal_ip)  
 }
 
     
