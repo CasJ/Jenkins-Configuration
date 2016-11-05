@@ -115,11 +115,11 @@ stage &apos;Upgrade Testing Start&apos;
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
-    //Setup during upgrade test
-    osa.install_during_upgrade_tests()
-    
     // Setup API uptime tests
     osa.install_api_uptime_tests()
+    
+    //Setup during upgrade test
+    osa.install_during_upgrade_tests()
     
     //Start During Upgrade Test
     osa.start_during_test()
