@@ -109,18 +109,23 @@ node(&apos;ci-onmetal-provisioner-6734&apos;) {
 
 }
 
-
 // *******************************
 stage &apos;Upgrade Testing Start&apos;
 // *******************************
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
     osa.install_during_upgrade_tests()
     
+    // Setup API uptime tests
+    osa.install_api_uptime_tests()
+    
     //Start During Upgrade Test
     osa.start_during_test()
+    
+    // Start API uptime tests
+    osa.start_api_uptime_tests()
     sleep 20
 }
 
@@ -130,21 +135,27 @@ stage &apos;Upgrade&apos;
 // *******************************
 
 echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_release}&quot;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
     
-    //Run upgrade
+    //Running upgrade
     //osa.upgrade_openstack(to_release)
+    
 }
+
 
 // *******************************
 stage &apos;Upgrade Testing Stop&apos;
 // *******************************
 echo &apos;Starting tests that will run continuosly thru upgrade&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
     osa.stop_during_test()  
+
+    // Stop API uptime tests
+    osa.stop_api_uptime_tests()  
 }
+
     
 // *******************************
 stage &apos;Post-Upgrade Validation&apos;
