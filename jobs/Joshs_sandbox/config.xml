@@ -131,7 +131,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Start API uptime tests
     osa.start_api_uptime_tests(onmetal_ip)
-    sleep 20
+    sleep 8
 }
 
 
