@@ -173,7 +173,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.run_tempest_smoke_tests(onmetal_ip,&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    osa.run_persistent_resources_tests(onmetal_ip, &apos;verify&apos;)
+    osa.run_persistent_resources_tests(onmetal_ip,&apos;verify&apos;, &apos;after_upgrade&apos;)
     osa.run_persistent_resources_tests(onmetal_ip, &apos;cleanup&apos;)
     
 }
