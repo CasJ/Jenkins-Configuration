@@ -58,7 +58,7 @@ node(&apos;master&apos;) {
 }
 
 //node(&apos;onmetal-provisioner&apos;) {
-node(&apos;ci-onmetal-provisioner-6734&apos;){
+node(&apos;onmetal-provisioner&apos;){
 
     // Wait for the agent to finish running cloud-init
     common.wait_for_agent_setup()
@@ -86,7 +86,7 @@ stage &apos;Deployment&apos;
 // *******************************
 
 echo &apos;Deploying OpenStack using OSA&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
     //osa.deploy_openstack()
@@ -102,7 +102,7 @@ stage &apos;Post-Deployment Validation&apos;
 // *******************************
 
 echo &apos;Validating the OpenStack deployment&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
@@ -167,7 +167,7 @@ stage &apos;Post-Upgrade Validation&apos;
 // *******************************
 
 echo &apos;Validating the OpenStack deployment after the upgrade&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
     osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
@@ -204,7 +204,7 @@ stage &apos;Clean Up&apos;
 // *******************************
 
 echo &apos;Deleting the onMetal host and its VMs&apos;
-node(&apos;ci-onmetal-provisioner-6734&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
     //osa.delete_virtual_resources()
