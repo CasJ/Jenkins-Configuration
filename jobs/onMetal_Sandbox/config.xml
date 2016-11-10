@@ -168,9 +168,8 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
-    //osa.upgrade_openstack(to_release)
+    osa.upgrade_openstack(to_release)
     //sleep time: 3, unit: &apos;MINUTES&apos;
-    sleep 15
     
 }
 
