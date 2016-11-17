@@ -140,9 +140,9 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
-    osa.install_persistent_resources_tests()
-    osa.run_persistent_resources_tests(&apos;create&apos;)
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    //osa.install_persistent_resources_tests()
+    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -154,16 +154,16 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
+    
+    // Setup API uptime tests
+    osa.install_api_uptime_tests()
     
     //Start During Upgrade Test
-    //osa.start_during_test()
-
-    // Setup API uptime tests
-    //osa.install_api_uptime_tests()
+    osa.start_during_test()
     
     // Start API uptime tests
-    //osa.start_api_uptime_tests()
+    osa.start_api_uptime_tests()
 }
 
 
@@ -176,6 +176,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
+    sleep time: 30, unit: &apos;MINUTES&apos;
     
 }
 
@@ -187,10 +188,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    //osa.stop_during_test()  
+    osa.stop_during_test()  
 
     // Stop API uptime tests
-    //osa.stop_api_uptime_tests()  
+    osa.stop_api_uptime_tests()  
 }
 
 
