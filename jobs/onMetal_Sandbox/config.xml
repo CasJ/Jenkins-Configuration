@@ -50,7 +50,7 @@
 
 def osa, common
 String workspace_dir 
-String onmetal_ip
+String onmetal_ip, elasticsearch_ip
 
 // Jenkins must provide these two variables as parameters or the build 
 // will fail:
@@ -73,11 +73,18 @@ node(&apos;master&apos;) {
 
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/lamarwhitej/qa-jenkins-onmetal_dev.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
     
+}
+
+node(&apos;elasticsearch&apos;) {
+
+    // Get the IP of the Elasticsearch/Kibana server
+    elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+
 }
 
 node(&apos;onmetal-provisioner&apos;) {
@@ -90,18 +97,17 @@ node(&apos;onmetal-provisioner&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //unstash &apos;raxpub&apos;
+    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    //onmetal_ip = osa.onmetal_provision(datacenter)
-    onmetal_ip = &apos;65.61.190.10&apos;
+    onmetal_ip = osa.onmetal_provision(datacenter)
 
     // Provision the VMs in the onMetal host
-    //osa.vm_provision()
+    osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    //osa.vm_preparation_for_osa(from_release)
+    osa.vm_preparation_for_osa(from_release)
 
 }
 
@@ -114,10 +120,10 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    //osa.deploy_openstack()
+    osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()
+    osa.configure_tempest()  
  
 }
 
@@ -130,7 +136,7 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
@@ -149,11 +155,11 @@ node(&apos;onmetal-provisioner&apos;) {
     //Setup during upgrade test
     //osa.install_during_upgrade_tests()
     
-    // Setup API uptime tests
-    //osa.install_api_uptime_tests()
-    
     //Start During Upgrade Test
     //osa.start_during_test()
+
+    // Setup API uptime tests
+    //osa.install_api_uptime_tests()
     
     // Start API uptime tests
     //osa.start_api_uptime_tests()
@@ -169,7 +175,6 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
-    //sleep time: 3, unit: &apos;MINUTES&apos;
     
 }
 
@@ -196,11 +201,11 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)
+    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 }
 
 
@@ -235,12 +240,13 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    osa.delete_virtual_resources()
+    //osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    osa.delete_onmetal(datacenter)
+    //osa.delete_onmetal(datacenter)
 
-}</script>
+}
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
