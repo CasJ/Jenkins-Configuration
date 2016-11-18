@@ -154,16 +154,16 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    osa.install_during_upgrade_tests()
+    //osa.install_during_upgrade_tests()
     
     // Setup API uptime tests
-    osa.install_api_uptime_tests()
+    //osa.install_api_uptime_tests()
     
     //Start During Upgrade Test
-    osa.start_during_test()
+    //osa.start_during_test()
     
     // Start API uptime tests
-    osa.start_api_uptime_tests()
+    //osa.start_api_uptime_tests()
 }
 
 
@@ -175,8 +175,8 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
-    //osa.upgrade_openstack(to_release)
-    sleep time: 30, unit: &apos;MINUTES&apos;
+    osa.upgrade_openstack(to_release)
+    //sleep time: 30, unit: &apos;MINUTES&apos;
     
 }
 
@@ -188,10 +188,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test()  
+    //osa.stop_during_test()  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests()  
+    //osa.stop_api_uptime_tests()  
 }
 
 
