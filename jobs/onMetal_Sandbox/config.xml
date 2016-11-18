@@ -84,6 +84,7 @@ node(&apos;elasticsearch&apos;) {
 
     // Get the IP of the Elasticsearch/Kibana server
     elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+    echo &quot;The IP address of the ElasticSearch server is: ${elasticsearch_ip}&quot;
 
 }
 
@@ -97,18 +98,17 @@ node(&apos;onmetal-provisioner&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //unstash &apos;raxpub&apos;
+    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    //onmetal_ip = osa.onmetal_provision(datacenter)
-    onmetal_ip = &apos;65.61.190.10&apos;
+    onmetal_ip = osa.onmetal_provision(datacenter)
 
     // Provision the VMs in the onMetal host
-    //osa.vm_provision()
+    osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    //osa.vm_preparation_for_osa(from_release)
+    osa.vm_preparation_for_osa(from_release)
 
 }
 
@@ -121,10 +121,10 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    //osa.deploy_openstack()
+    osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
@@ -137,12 +137,12 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
-    //osa.install_persistent_resources_tests()
-    //osa.run_persistent_resources_tests(&apos;create&apos;)
-    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -154,16 +154,17 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
     
     // Setup API uptime tests
-    //osa.install_api_uptime_tests()
-    
+    osa.install_api_uptime_tests()
+
     //Start During Upgrade Test
     //osa.start_during_test()
-    
+  
     // Start API uptime tests
     //osa.start_api_uptime_tests()
+
 }
 
 
@@ -175,8 +176,7 @@ echo &quot;Upgrading the OpenStack deployment from ${from_release} to ${to_relea
 node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
-    osa.upgrade_openstack(to_release)
-    //sleep time: 30, unit: &apos;MINUTES&apos;
+    //osa.upgrade_openstack(to_release)
     
 }
 
@@ -192,6 +192,7 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Stop API uptime tests
     //osa.stop_api_uptime_tests()  
+
 }
 
 
@@ -208,19 +209,21 @@ node(&apos;onmetal-provisioner&apos;) {
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
     //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
+
 }
 
 
 // *******************************
 stage &apos;Reporting&apos;
 // *******************************
-echo &apos;To be defined further&apos;
 
+echo &apos;Parsing the test results and submitting them to ElasticSearch&apos;
 node(&apos;onmetal-provisioner&apos;){
     
     // Pase persistent resource results
     //osa.setup_parse_persistent_resources()
     //osa.parse_persistent_resources_tests()
+
 }
 
 node(&apos;elasticsearch&apos;){
