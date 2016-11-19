@@ -105,12 +105,12 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(onmetal_ip,&apos;before_upgrade&apos;)
+    //osa.run_tempest_smoke_tests(onmetal_ip,&apos;before_upgrade&apos;)
     
     // Install and run the persistent resources creation
-    osa.install_persistent_resources_tests(onmetal_ip)
-    osa.run_persistent_resources_tests(onmetal_ip, &apos;create&apos;)
-    osa.run_persistent_resources_tests(onmetal_ip, &apos;verify&apos;, &apos;before_upgrade&apos;)
+    //osa.install_persistent_resources_tests(onmetal_ip)
+    //osa.run_persistent_resources_tests(onmetal_ip, &apos;create&apos;)
+    //osa.run_persistent_resources_tests(onmetal_ip, &apos;verify&apos;, &apos;before_upgrade&apos;)
 
 }
 
@@ -121,7 +121,7 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
     
     // Setup API uptime tests
-    osa.install_api_uptime_tests(onmetal_ip)
+    //osa.install_api_uptime_tests(onmetal_ip)
     
     //Setup during upgrade test
     osa.install_during_upgrade_tests(onmetal_ip)
@@ -130,7 +130,7 @@ node(&apos;onmetal-provisioner&apos;) {
     osa.start_during_test(onmetal_ip)
     
     // Start API uptime tests
-    osa.start_api_uptime_tests(onmetal_ip)
+    //osa.start_api_uptime_tests(onmetal_ip)
     sleep 15
 }
 
@@ -155,10 +155,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test(onmetal_ip)  
+    //osa.stop_during_test(onmetal_ip)  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests(onmetal_ip)  
+    //osa.stop_api_uptime_tests(onmetal_ip)  
 }
 
     
@@ -170,11 +170,11 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(onmetal_ip,&apos;after_upgrade&apos;)
+    //osa.run_tempest_smoke_tests(onmetal_ip,&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    osa.run_persistent_resources_tests(onmetal_ip,&apos;verify&apos;, &apos;after_upgrade&apos;)
-    osa.run_persistent_resources_tests(onmetal_ip, &apos;cleanup&apos;)
+    //osa.run_persistent_resources_tests(onmetal_ip,&apos;verify&apos;, &apos;after_upgrade&apos;)
+    //osa.run_persistent_resources_tests(onmetal_ip, &apos;cleanup&apos;)
     
 }
 
@@ -188,14 +188,14 @@ echo &apos;To be defined further&apos;
 node(&apos;elasticsearch&apos;){
 
     //Parse persistent resouces data
-    osa.setup_parse_persistent_resources(onmetal_ip)
-    osa.parse_persistent_resources_tests(onmetal_ip)
+    //osa.setup_parse_persistent_resources(onmetal_ip)
+    //osa.parse_persistent_resources_tests(onmetal_ip)
     
     //Pull data from onmetal places it on ES vm
     osa.aggregate_results(onmetal_ip)
 
     //Push data to ES
-    osa.parse_results()
+    //osa.parse_results()
 }
 
 
