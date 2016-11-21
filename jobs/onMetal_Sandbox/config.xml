@@ -178,7 +178,9 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
+    echo &apos;Fake upgrade starting...&apos;
     sleep time: 30, unit: &apos;MINUTES&apos;
+    echo &apos;Fake upgrade finished...&apos;
     
 }
 
