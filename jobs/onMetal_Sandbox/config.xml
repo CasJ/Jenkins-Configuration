@@ -103,7 +103,7 @@ node(&apos;onmetal-provisioner&apos;) {
     
     // Provision the onMetal host
     //onmetal_ip = osa.onmetal_provision(datacenter)
-    onmeatl_ip = &apos;172.99.84.142&apos;
+    onmetal_ip = &apos;172.99.84.142&apos;
 
     // Provision the VMs in the onMetal host
     //osa.vm_provision()
@@ -161,10 +161,10 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.install_api_uptime_tests()
 
     //Start During Upgrade Test
-    osa.start_during_test()
+    //osa.start_during_test()
   
     // Start API uptime tests
-    osa.start_api_uptime_tests()
+    //osa.start_api_uptime_tests()
 
 }
 
@@ -178,9 +178,9 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
-    echo &apos;Fake upgrade starting...&apos;
-    sleep time: 30, unit: &apos;MINUTES&apos;
-    echo &apos;Fake upgrade finished...&apos;
+    //echo &apos;Fake upgrade starting...&apos;
+    //sleep time: 30, unit: &apos;MINUTES&apos;
+    //echo &apos;Fake upgrade finished...&apos;
     
 }
 
@@ -192,10 +192,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test()  
+    //osa.stop_during_test()  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests()  
+    //osa.stop_api_uptime_tests()  
 
 }
 
@@ -208,11 +208,11 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
+    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
+    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 
 }
 
@@ -225,8 +225,8 @@ echo &apos;Parsing the test results and submitting them to ElasticSearch&apos;
 node(&apos;onmetal-provisioner&apos;){
     
     // Pase persistent resource results
-    osa.setup_parse_persistent_resources()
-    osa.parse_persistent_resources_tests()
+    //osa.setup_parse_persistent_resources()
+    //osa.parse_persistent_resources_tests()
 
 }
 
