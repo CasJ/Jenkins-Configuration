@@ -29,9 +29,8 @@ node(&apos;master&apos;) {
 node(&apos;elasticsearch&apos;) {
 
     // Get the server information
-    def info = get_elasticsearch_server_info()
-    elasticsearch_ip = info[&apos;ip&apos;]
-    elasticsearch_pkey = info[&apos;pkey&apos;] 
+    elasticsearch_ip = common.get_server_ip()
+    elasticsearch_pkey = common.get_server_public_key()
 
 }
 
