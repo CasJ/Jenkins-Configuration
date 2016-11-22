@@ -27,7 +27,7 @@ node(&apos;onmetal-provisioner&apos;) {
     sh &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
     
-        echo &apos;${elasticsearch_public_key}&apos;
+        echo ${elasticsearch_public_key}
     &apos;&apos;&apos;
     &quot;&quot;&quot;
     //#    echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /root/.ssh/authorized_keys
