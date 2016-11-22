@@ -112,7 +112,7 @@ node(&apos;onmetal-provisioner&apos;) {
     //osa.vm_preparation_for_osa(from_release)
     
     // Add the elasticsearch public key to the deployed onmetal host
-    common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
+    //common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
 
 }
 
