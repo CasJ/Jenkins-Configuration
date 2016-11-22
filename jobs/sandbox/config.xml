@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<flow-definition plugin="workflow-job@2.8">
+<flow-definition plugin="workflow-job@2.9">
   <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
@@ -8,7 +8,7 @@
       <triggers/>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
-  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.21">
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.23">
     <script>String elasticsearch_ip
 
 stage &apos;Sandbox&apos;
@@ -17,6 +17,8 @@ node(&apos;elasticsearch&apos;) {
 
     // Get the IP of the Elasticsearch/Kibana server
     elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+    elasticsearch_public_key = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
+    sh &quot;&quot;&quot;echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /home/ubuntu/.ssh/authorized_keys&quot;&quot;&quot;
 
 }
 
