@@ -21,7 +21,7 @@ node(&apos;elasticsearch&apos;) {
     elasticsearch_public_key = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
 }
 
-node(&apos;onmetal_provisioner&apos;) {
+node(&apos;onmetal-provisioner&apos;) {
     sh &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
         echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /root/.ssh/authorized_keys
