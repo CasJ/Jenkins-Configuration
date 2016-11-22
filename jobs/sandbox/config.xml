@@ -26,12 +26,7 @@ node(&apos;elasticsearch&apos;) {
     &quot;&quot;&quot;
     //sh &quot;&quot;&quot;echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /home/ubuntu/.ssh/authorized_keys&quot;&quot;&quot;
 
-}
-
-node(&apos;onmetal-provisioner&apos;) {
-    echo elasticsearch_ip
-}
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
