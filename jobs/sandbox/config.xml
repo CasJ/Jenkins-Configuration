@@ -22,7 +22,7 @@ node(&apos;elasticsearch&apos;) {
 }
 
 node(&apos;onmetal-provisioner&apos;) {
-    echo &quot;${elasticsearch_public_key}&quot;
+
     echo &apos;Adding the elasticsearch public key to the onmetal host&apos;
     sh &quot;&quot;&quot;
     ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
