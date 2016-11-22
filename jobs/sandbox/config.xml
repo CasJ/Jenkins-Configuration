@@ -30,8 +30,8 @@ node(&apos;elasticsearch&apos;) {
 
     // Get the server information
     def info = get_elasticsearch_server_info()
-    elasticsearch_ip = info[ip]
-    elasticsearch_pkey = info[pkey] 
+    elasticsearch_ip = info[&apos;ip&apos;]
+    elasticsearch_pkey = info[&apos;pkey&apos;] 
 
 }
 
@@ -55,7 +55,7 @@ def get_elasticsearch_server_info() {
     elasticsearch_pkey = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
     
     //def sampleMap = [color:&apos;Blue&apos;, shape:&apos;Circle&apos;]
-    def elasticsearch_info = [ip: elasticsearch_ip, pkey: elasticsearch_pkey]
+    def elasticsearch_info = [&apos;ip&apos;: elasticsearch_ip, &apos;pkey&apos;: elasticsearch_pkey]
     return (elasticsearch_info)
 
 }</script>
