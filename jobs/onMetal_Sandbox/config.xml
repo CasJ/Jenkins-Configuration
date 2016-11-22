@@ -50,7 +50,7 @@
 
 def osa, common
 String workspace_dir 
-String onmetal_ip, elasticsearch_ip
+String onmetal_ip, elasticsearch_ip, elasticsearch_pkey
 
 // Jenkins must provide these two variables as parameters or the build 
 // will fail:
@@ -82,9 +82,9 @@ node(&apos;master&apos;) {
 
 node(&apos;elasticsearch&apos;) {
 
-    // Get the IP of the Elasticsearch/Kibana server
-    elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
-    echo &quot;The IP address of the ElasticSearch server is: ${elasticsearch_ip}&quot;
+    // Get the server information
+    elasticsearch_ip = common.get_server_ip()
+    elasticsearch_pkey = common.get_server_public_key()
 
 }
 
@@ -110,6 +110,9 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Prepare the VMs to run OpenStack
     //osa.vm_preparation_for_osa(from_release)
+    
+    // Add the elasticsearch public key to the deployed onmetal host
+    common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
 
 }
 
