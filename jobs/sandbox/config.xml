@@ -9,27 +9,23 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.23">
-    <script>String elasticsearch_ip, elasticsearch_public_key
+    <script>String elasticsearch_ip, elasticsearch_pkey
 String host_ip = &apos;172.99.84.142&apos;
 
 stage &apos;Sandbox&apos;
 
 node(&apos;elasticsearch&apos;) {
-    // Get the IP of the Elasticsearch/Kibana server
-    elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
-    // Get the public key
-    elasticsearch_public_key = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
+
+    // Get the server information
+    (elasticsearch_ip, elasticsearch_pkey) = common.get_elasticsearch_server_info()
+
 }
 
 node(&apos;onmetal-provisioner&apos;) {
 
-    echo &apos;Adding the elasticsearch public key to the onmetal host&apos;
-    sh &quot;&quot;&quot;
-    ssh -o StrictHostKeyChecking=no root@${host_ip} &apos;&apos;&apos;
-        echo &quot;${elasticsearch_public_key}&quot; &gt;&gt; /root/.ssh/authorized_keys
-    &apos;&apos;&apos;
-    &quot;&quot;&quot;
-    //#    echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /root/.ssh/authorized_keys
+    // Add the elasticsearch public key to the deployed onmetal host
+    common.add_key_to_host(host_ip, elasticsearch_pkey)
+
 }</script>
     <sandbox>true</sandbox>
   </definition>
