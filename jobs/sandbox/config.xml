@@ -29,7 +29,7 @@ node(&apos;master&apos;) {
 node(&apos;elasticsearch&apos;) {
 
     // Get the server information
-    (elasticsearch_ip, elasticsearch_pkey) = common.get_elasticsearch_server_info()
+    (elasticsearch_ip, elasticsearch_pkey) = get_elasticsearch_server_info()
 
 }
 
@@ -37,6 +37,24 @@ node(&apos;onmetal-provisioner&apos;) {
 
     // Add the elasticsearch public key to the deployed onmetal host
     common.add_key_to_host(host_ip, elasticsearch_pkey)
+
+}
+
+
+def get_elasticsearch_server_info() {
+
+    String elasticsearch_ip, elasticsearch_pkey
+
+    // Get the IP of the Elasticsearch/Kibana server
+    elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+    echo &quot;The IP address of the ElasticSearch server is: ${elasticsearch_ip}&quot;
+
+    // Get the public key from the elasticsearch server
+    elasticsearch_pkey = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
+    
+    //def sampleMap = [color:&apos;Blue&apos;, shape:&apos;Circle&apos;]
+    def elasticsearch_info = [ip: elasticsearch_ip, pkey: elasticsearch_pkey]
+    return (elasticsearch_info)
 
 }</script>
     <sandbox>true</sandbox>
