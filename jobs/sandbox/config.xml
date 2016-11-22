@@ -37,7 +37,7 @@ node(&apos;elasticsearch&apos;) {
 node(&apos;onmetal-provisioner&apos;) {
 
     // Add the elasticsearch public key to the deployed onmetal host
-    common.add_key_to_host(host_ip, elasticsearch_pkey)
+    common.add_key_to_server(host_ip, elasticsearch_pkey)
 
 }
 
