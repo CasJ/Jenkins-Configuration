@@ -15,11 +15,15 @@ stage &apos;Sandbox&apos;
 
 node(&apos;elasticsearch&apos;) {
 
+    host_ip = &apos;172.99.84.142&apos;
     // Get the IP of the Elasticsearch/Kibana server
     elasticsearch_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
     elasticsearch_public_key = sh returnStdout: true, script: &apos;cat /home/ubuntu/.ssh/id_rsa.pub&apos;
     echo elasticsearch_public_key
     sh &quot;&quot;&quot;echo &apos;${elasticsearch_public_key}&apos;&quot;&quot;&quot;
+    ssh -o StrictHostKeyChecking=no root@${host_ip} &quot;&quot;&quot;
+        echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /home/ubuntu/.ssh/authorized_keys
+    &quot;&quot;&quot;
     //sh &quot;&quot;&quot;echo &apos;${elasticsearch_public_key}&apos; &gt;&gt; /home/ubuntu/.ssh/authorized_keys&quot;&quot;&quot;
 
 }
