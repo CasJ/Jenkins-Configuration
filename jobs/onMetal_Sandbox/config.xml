@@ -83,8 +83,8 @@ node(&apos;master&apos;) {
 node(&apos;elasticsearch&apos;) {
 
     // Get the server information
-    //elasticsearch_ip = common.get_server_ip()
-    //elasticsearch_pkey = common.get_server_public_key()
+    elasticsearch_ip = common.get_server_ip()
+    elasticsearch_pkey = common.get_server_public_key()
 
 }
 
@@ -98,22 +98,20 @@ node(&apos;onmetal-provisioner&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    //unstash &apos;raxpub&apos;
+    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    //onmetal_ip = osa.onmetal_provision(datacenter)
-    //onmetal_ip = &apos;172.99.84.142&apos;
-    on_metal_ip = &apos;65.61.190.10&apos;
+    onmetal_ip = osa.onmetal_provision(datacenter)
 
     // Provision the VMs in the onMetal host
-    //osa.vm_provision()
+    osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    //osa.vm_preparation_for_osa(from_release)
-    
+    osa.vm_preparation_for_osa(from_release)
+
     // Add the elasticsearch public key to the deployed onmetal host
-    //common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
+    common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
 
 }
 
@@ -126,10 +124,10 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    //osa.deploy_openstack()
+    osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    //osa.configure_tempest()  
+    osa.configure_tempest()  
  
 }
 
@@ -182,9 +180,9 @@ node(&apos;onmetal-provisioner&apos;) {
     
     //Running upgrade
     //osa.upgrade_openstack(to_release)
-    //echo &apos;Fake upgrade starting...&apos;
-    //sleep time: 30, unit: &apos;MINUTES&apos;
-    //echo &apos;Fake upgrade finished...&apos;
+    echo &apos;Fake upgrade starting...&apos;
+    sleep time: 1, unit: &apos;MINUTES&apos;
+    echo &apos;Fake upgrade finished.&apos;
     
 }
 
@@ -253,13 +251,12 @@ echo &apos;Deleting the onMetal host and its VMs&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Delete VMs
-    osa.delete_virtual_resources()
+    //osa.delete_virtual_resources()
     
     // Delete the onMetal host
-    osa.delete_onmetal(datacenter)
+    //osa.delete_onmetal(datacenter)
 
-}
-</script>
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
