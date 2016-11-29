@@ -98,20 +98,21 @@ node(&apos;onmetal-provisioner&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
-    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    unstash &apos;raxpub&apos;
+    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    //unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
-    onmetal_ip = osa.onmetal_provision(datacenter)
+    //onmetal_ip = osa.onmetal_provision(datacenter)
+    onmetal_ip = &apos;172.99.85.70&apos;
 
     // Provision the VMs in the onMetal host
-    osa.vm_provision()
+    //osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
-    osa.vm_preparation_for_osa(from_release)
+    //osa.vm_preparation_for_osa(from_release)
 
     // Add the elasticsearch public key to the deployed onmetal host
-    common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
+    //common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
 
 }
 
@@ -124,10 +125,10 @@ echo &apos;Deploying OpenStack using OSA&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Deploy OpenStack with OSA
-    osa.deploy_openstack()
+    //osa.deploy_openstack()
     
     // Install and configure Tempest on the onMetal host
-    osa.configure_tempest()  
+    //osa.configure_tempest()  
  
 }
 
@@ -140,7 +141,7 @@ echo &apos;Validating the OpenStack deployment&apos;
 node(&apos;onmetal-provisioner&apos;) {
 
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
@@ -210,7 +211,7 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;onmetal-provisioner&apos;) {
  
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
@@ -235,10 +236,10 @@ node(&apos;onmetal-provisioner&apos;){
 node(&apos;elasticsearch&apos;){
     
     //Pull data from onmetal places it on ES vm
-    //osa.aggregate_results(onmetal_ip)
+    osa.aggregate_results(onmetal_ip)
 
     //Push data to ES
-    //osa.parse_results()
+    osa.parse_results()
     
 }
 
