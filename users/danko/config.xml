@@ -34,5 +34,8 @@
     <hudson.tasks.Mailer_-UserProperty plugin="mailer@1.18">
       <emailAddress>dan.kolb@rackspace.com</emailAddress>
     </hudson.tasks.Mailer_-UserProperty>
+    <jenkins.security.LastGrantedAuthoritiesProperty>
+      <timestamp>0</timestamp>
+    </jenkins.security.LastGrantedAuthoritiesProperty>
   </properties>
 </user>
