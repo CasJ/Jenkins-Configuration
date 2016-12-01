@@ -63,6 +63,13 @@
               <retentionTime>-1</retentionTime>
             </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
+          <jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
+            <name>cas-temp-agent</name>
+            <labelString>cas-temp-agent</labelString>
+            <slaveOptions>
+              <hardwareId>5</hardwareId>
+            </slaveOptions>
+          </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
         </c>
         <list reference="../c"/>
       </templates>
