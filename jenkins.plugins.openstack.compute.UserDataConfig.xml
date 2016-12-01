@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<jenkins.plugins.openstack.compute.UserDataConfig_-UserDataConfigProvider plugin="openstack-cloud@2.11">
+<jenkins.plugins.openstack.compute.UserDataConfig_-UserDataConfigProvider plugin="openstack-cloud@2.13">
   <configs>
     <entry>
       <string>jenkins.plugins.openstack.compute.UserDataConfig.1471643505815</string>
-      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.11">
+      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.13">
         <id>jenkins.plugins.openstack.compute.UserDataConfig.1471643505815</id>
         <name>interops_deployer</name>
         <comment>Agent to run different woarkloads on top of osic1 cloud</comment>
@@ -32,7 +32,7 @@ runcmd:
     </entry>
     <entry>
       <string>jenkins.plugins.openstack.compute.UserDataConfig.1471553284027</string>
-      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.11">
+      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.13">
         <id>jenkins.plugins.openstack.compute.UserDataConfig.1471553284027</id>
         <name>onmetal_deployer_setup</name>
         <comment>Initial setup for an onmetal deployer</comment>
@@ -72,11 +72,14 @@ runcmd:
     </entry>
     <entry>
       <string>jenkins.plugins.openstack.compute.UserDataConfig.1470757175885</string>
-      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.11">
+      <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.13">
         <id>jenkins.plugins.openstack.compute.UserDataConfig.1470757175885</id>
         <name>vm_initial_setup</name>
         <comment>Installs arbitrary packages</comment>
         <content>#cloud-config
+
+runcmd:
+ - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts
 
 packages:
  - git
@@ -88,10 +91,7 @@ packages:
  - python-dev 
  - libxml2-dev 
  - libxslt1-dev 
- - libpq-dev
-
-runcmd:
- - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts</content>
+ - libpq-dev</content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
