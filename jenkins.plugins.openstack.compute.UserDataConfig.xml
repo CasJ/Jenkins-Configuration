@@ -93,7 +93,7 @@ packages:
  - libxslt1-dev 
  - libpq-dev
 
-rancid:
+runcmd:
  - sudo pip install virtualenv virtualenvwrapper</content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
