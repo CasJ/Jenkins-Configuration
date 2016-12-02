@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<jenkins.plugins.openstack.compute.UserDataConfig_-UserDataConfigProvider plugin="openstack-cloud@2.13">
+<jenkins.plugins.openstack.compute.UserDataConfig_-UserDataConfigProvider plugin="openstack-cloud@2.14">
   <configs>
     <entry>
       <string>jenkins.plugins.openstack.compute.UserDataConfig.1471643505815</string>
@@ -91,7 +91,10 @@ packages:
  - python-dev 
  - libxml2-dev 
  - libxslt1-dev 
- - libpq-dev</content>
+ - libpq-dev
+
+rancid:
+ - sudo pip install virtualenv virtualenvwrapper</content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
