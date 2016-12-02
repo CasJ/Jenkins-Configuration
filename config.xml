@@ -65,7 +65,7 @@
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
           <jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
             <name>cas-temp-agent</name>
-            <labelString>cas-temp-agent</labelString>
+            <labelString>cas-agent</labelString>
             <slaveOptions>
               <hardwareId>5</hardwareId>
             </slaveOptions>
