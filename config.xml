@@ -130,8 +130,8 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <string>AIO_Upgrade_Sandbox_Cas</string>
         <string>all_in_one_sandbox</string>
-        <string>All_In_One_Sandbox_Cas</string>
         <string>All_In_One_VM</string>
         <string>All_In_One_VM (KC Sandbox)</string>
         <string>luz_sandbox</string>
