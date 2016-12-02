@@ -20,7 +20,7 @@ f5fpc --info
 sleep 10 
 f5fpc --info
 ssh 172.24.0.21 -l root &quot;hostname&quot;
-f5fpc --stop
+f5fpc --stop &amp;
 sleep 10
 f5fpc --info</command>
     </hudson.tasks.Shell>
