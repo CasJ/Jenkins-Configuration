@@ -102,7 +102,7 @@ node(&apos;cas-agent&apos;) {
 
     // Install and run the persistent resources creation
     sh &apos;&apos;&apos;
-    rm -rf $HOME/.cache
+    sudo rm -rf $HOME/.cache
     &apos;&apos;&apos;
     osa.install_persistent_resources_tests()
     osa.run_persistent_resources_tests(&apos;create&apos;)
