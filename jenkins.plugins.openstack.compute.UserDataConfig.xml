@@ -94,7 +94,17 @@ packages:
  - libpq-dev
 
 runcmd:
- - sudo pip install virtualenv virtualenvwrapper</content>
+ - sudo pip install virtualenv virtualenvwrapper
+ - echo &quot;export WORKON_HOME=$HOME/.virtualenvs&quot; &gt;&gt; $HOME/.bashrc
+ - echo &quot;export PROJECT_HOME=$HOME/Devel&quot; &gt;&gt; $HOME/.bashrc
+ - echo &quot;source /usr/local/bin/virtualenvwrapper.sh&quot; &gt;&gt; $HOME/.bashrc
+ - echo &quot;alias mkv=&apos;mkvirtualenv&apos;&quot; &gt;&gt; $HOME/.bashrc
+ - echo &quot;alias rmv=&apos;rmvirtualenv&apos;&quot; &gt;&gt; $HOME/.bashrc
+ - echo &quot;alias lsv=&apos;lsvirtualenv&apos;&quot; &gt;&gt; $HOME/.bashrc
+ - export WORKON_HOME=$HOME/.virtualenvs
+ - export PROJECT_HOME=$HOME/Devel
+ - source /usr/local/bin/virtualenvwrapper.sh
+</content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
