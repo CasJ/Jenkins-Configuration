@@ -24,7 +24,7 @@
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
   <clouds>
-    <jenkins.plugins.openstack.compute.JCloudsCloud plugin="openstack-cloud@2.13">
+    <jenkins.plugins.openstack.compute.JCloudsCloud plugin="openstack-cloud@2.14">
       <name>Cloud1</name>
       <endPointUrl>https://cloud1.osic.org:5000/v2.0</endPointUrl>
       <identity>osic-engineering:castulo.martinez</identity>
@@ -131,6 +131,7 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
         <string>all_in_one_sandbox</string>
+        <string>All_In_One_Sandbox_Cas</string>
         <string>All_In_One_VM</string>
         <string>All_In_One_VM (KC Sandbox)</string>
         <string>luz_sandbox</string>
