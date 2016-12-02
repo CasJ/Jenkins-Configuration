@@ -75,9 +75,9 @@ node(&apos;cas-agent&apos;) {
     osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
-    osa.install_persistent_resources_tests()
-    osa.run_persistent_resources_tests(&apos;create&apos;)
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    //osa.install_persistent_resources_tests()
+    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
     
 }
 
@@ -107,8 +107,8 @@ node(&apos;cas-agent&apos;) {
     osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
+    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 
 }
 
@@ -120,18 +120,18 @@ echo &apos;Parsing the test results and submitting them to ElasticSearch&apos;
 node(&apos;cas-agent&apos;){
     
     // Pase persistent resource results
-    osa.setup_parse_persistent_resources()
-    osa.parse_persistent_resources_tests()
+    //osa.setup_parse_persistent_resources()
+    //osa.parse_persistent_resources_tests()
 
 }
 
 node(&apos;elasticsearch&apos;){
     
     //Pull data from the system and places it on ES vm
-    osa.aggregate_results(host_ip)
+    //osa.aggregate_results(host_ip)
 
     //Push data to ES
-    osa.parse_results()
+    //osa.parse_results()
     
 }</script>
     <sandbox>true</sandbox>
