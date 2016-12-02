@@ -101,6 +101,9 @@ node(&apos;cas-agent&apos;) {
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
+    sh &apos;&apos;&apos;
+    rm -rf $HOME/.cache
+    &apos;&apos;&apos;
     osa.install_persistent_resources_tests()
     osa.run_persistent_resources_tests(&apos;create&apos;)
     osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
