@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
+  <description>testing connection to bme cloud5</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -9,7 +10,29 @@
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <triggers/>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck
+sleep 10
+f5fpc --info
+sleep 10 
+f5fpc --info
+ssh 172.24.0.21 -l root &quot;hostname&quot;
+f5fpc --stop
+sleep 10
+f5fpc --info</command>
+    </hudson.tasks.Shell>
+  </builders>
   <publishers/>
-  <buildWrappers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.10">
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <credentialsId>b4df0136-d403-4e1c-a62b-10d751505d77</credentialsId>
+          <usernameVariable>CLOUD_USER</usernameVariable>
+          <passwordVariable>CLOUD_PASS</passwordVariable>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+  </buildWrappers>
 </project>
