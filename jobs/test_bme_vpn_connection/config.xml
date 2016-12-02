@@ -15,14 +15,14 @@
   <builders>
     <hudson.tasks.Shell>
       <command>f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;
-sleep 10
-f5fpc --info
+#sleep 10
+#f5fpc --info
 sleep 10 
-f5fpc --info
+#f5fpc --info
 ssh 172.24.0.21 -l root &quot;hostname&quot;
 f5fpc --stop &amp;
 sleep 10
-f5fpc --info</command>
+f5fpc --info &amp;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
