@@ -151,7 +151,7 @@
     </listView>
     <listView>
       <owner class="hudson" reference="../../.."/>
-      <name>22 Node BME (Cloud 5)</name>
+      <name>Cloud 5 - 22 Node BME</name>
       <description>This view contains all pipelines associated with the Cloud 5, 22 node bare metal environment.</description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
