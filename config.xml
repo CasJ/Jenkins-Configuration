@@ -158,6 +158,7 @@
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>22Node_Upgrade</string>
         <string>test_bme_vpn_connection</string>
       </jobNames>
       <jobFilters/>
