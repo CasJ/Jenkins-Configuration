@@ -79,10 +79,10 @@ node(&apos;cas-agent&apos;) {
     host_ip = common.get_server_ip()
 
     // Add the elasticsearch public key to the deployed onmetal host
-    //common.add_key_to_server(elasticsearch_pkey)
+    common.add_key_to_server(elasticsearch_pkey)
 
     // Deploy OpenStack
-    //osa.deploy_openstack_aio(from_release)
+    osa.deploy_openstack_aio(from_release)
 
 }
 
@@ -95,18 +95,15 @@ echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;cas-agent&apos;) {
    
     // Install latest version of Tempest in the host
-    //osa.install_tempest()
+    osa.install_tempest()
 
     // Run the smoke tests
     //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
 
     // Install and run the persistent resources creation
-    sh &apos;&apos;&apos;
-    sudo rm -rf $HOME/.cache
-    &apos;&apos;&apos;
-    osa.install_persistent_resources_tests()
-    osa.run_persistent_resources_tests(&apos;create&apos;)
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    //osa.install_persistent_resources_tests()
+    //osa.run_persistent_resources_tests(&apos;create&apos;)
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
     
 }
 
@@ -136,8 +133,8 @@ node(&apos;cas-agent&apos;) {
     //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
 
     // Run the persistent resources validation then clean them up
-    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
+    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
+    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 
 }
 
