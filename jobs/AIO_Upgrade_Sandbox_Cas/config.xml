@@ -108,6 +108,26 @@ node(&apos;cas-agent&apos;) {
 }
 
 // *******************************
+stage &apos;Upgrade Testing Start&apos;
+// *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;cas-agent&apos;) {
+    
+    //Setup during upgrade test
+    //osa.install_during_upgrade_tests()
+    
+    // Setup API uptime tests
+    //osa.install_api_uptime_tests()
+
+    //Start During Upgrade Test
+    //osa.start_during_test()
+  
+    // Start API uptime tests
+    //osa.start_api_uptime_tests()
+
+}
+
+// *******************************
 stage &apos;Rolling Upgrade&apos;
 // *******************************
 
@@ -119,6 +139,20 @@ node(&apos;cas-agent&apos;) {
     echo &apos;Fake upgrade starting...&apos;
     sleep time: 1, unit: &apos;MINUTES&apos;
     echo &apos;Fake upgrade finished.&apos;
+
+}
+
+// *******************************
+stage &apos;Upgrade Testing Stop&apos;
+// *******************************
+echo &apos;Starting tests that will run continuosly thru upgrade&apos;
+node(&apos;cas-agent&apos;) {
+
+    //Stop During Upgrade Test
+    //osa.stop_during_test()  
+
+    // Stop API uptime tests
+    //osa.stop_api_uptime_tests()  
 
 }
 
