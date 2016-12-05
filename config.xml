@@ -152,11 +152,13 @@
     <listView>
       <owner class="hudson" reference="../../.."/>
       <name>22 Node BME (Cloud 5)</name>
+      <description>This view contains all pipelines associated with the Cloud 5, 22 node bare metal environment.</description>
       <filterExecutors>false</filterExecutors>
       <filterQueue>false</filterQueue>
       <properties class="hudson.model.View$PropertyList"/>
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>test_bme_vpn_connection</string>
       </jobNames>
       <jobFilters/>
       <columns>
