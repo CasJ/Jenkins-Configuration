@@ -101,7 +101,7 @@ packages:
       <org.jenkinsci.lib.configprovider.model.Config plugin="config-file-provider@2.13">
         <id>jenkins.plugins.openstack.compute.UserDataConfig.1480952695392</id>
         <name>init_with_virtualenv</name>
-        <comment></comment>
+        <comment>Test file - do not use</comment>
         <content>runcmd:
  - sudo pip install virtualenv virtualenvwrapper
  - echo &quot;export WORKON_HOME=$HOME/.virtualenvs&quot; &gt;&gt; $HOME/.bashrc
