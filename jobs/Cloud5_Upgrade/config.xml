@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.9">
   <actions/>
-  <description>Job used for testing a debugging the pipeline</description>
+  <description>Job used to test upgrade in the 22 node BME on Cloud 5.</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -29,16 +29,6 @@
             </a>
           </choices>
         </hudson.model.ChoiceParameterDefinition>
-        <hudson.model.ChoiceParameterDefinition>
-          <name>datacenter</name>
-          <description></description>
-          <choices class="java.util.Arrays$ArrayList">
-            <a class="string-array">
-              <string>dfw</string>
-              <string>iad</string>
-            </a>
-          </choices>
-        </hudson.model.ChoiceParameterDefinition>
       </parameterDefinitions>
     </hudson.model.ParametersDefinitionProperty>
     <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
@@ -63,7 +53,7 @@ String onmetal_ip, elasticsearch_ip, elasticsearch_pkey
 stage &apos;Pre-Deployment&apos;
 // *******************************
 
-echo &apos;Provisioning an onMetal server and preparing it to run OSA&apos;
+echo &apos;Provisioning the and preparing it to run OSA&apos;
 node(&apos;master&apos;) {
     
     // Copy the Rax key from the Jenkins master
