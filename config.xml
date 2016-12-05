@@ -68,6 +68,7 @@
             <labelString>cas-agent</labelString>
             <slaveOptions>
               <hardwareId>5</hardwareId>
+              <retentionTime>-1</retentionTime>
             </slaveOptions>
           </jenkins.plugins.openstack.compute.JCloudsSlaveTemplate>
         </c>
