@@ -220,9 +220,11 @@ node(&apos;cas-agent&apos;) {
 def aggregate_results(host_ip) {
 
     //Pull persistent, during, api, smoke results from onmetal to ES vm
+    String cmd
+    cmd = &quot;scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/output/ \$HOME&quot;
     sh &quot;&quot;&quot;
     {
-    scp -o StrictHostKeyChecking=no -r &apos;ubuntu@${host_ip}:\$HOME/output/ \$HOME&apos;
+    ${cmd}
     } || {
     echo &apos;No output directory found.&apos;
     }
