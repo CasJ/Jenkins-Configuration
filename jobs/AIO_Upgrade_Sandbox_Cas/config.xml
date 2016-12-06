@@ -197,7 +197,7 @@ node(&apos;elasticsearch&apos;){
     aggregate_results(host_ip)
 
     //Push data to ES
-    osa.parse_results()
+    parse_results()
     
 }
 
@@ -215,25 +215,14 @@ node(&apos;cas-agent&apos;) {
 
 }
 
-
-
-def aggregate_results(host_ip) {
-
-    //Pull persistent, during, api, smoke results from onmetal to ES vm
-    host_ip = &quot;${host_ip}&quot;.trim()
-    println &quot;==${host_ip}==&quot;
-    sh &quot;&quot;&quot;
-    {
-    scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/output/ \$HOME
-    } || {
-    echo &apos;No output directory found.&apos;
-    }
-    {
-    scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/subunit/ \$HOME
-    } || {
-    echo &apos;No subunit directory found.&apos;
-    }
-    &quot;&quot;&quot;
+def parse_results() {
+	
+    sh &apos;&apos;&apos;
+    rm -rf elastic-benchmark
+    git clone https://github.com/osic/elastic-benchmark
+    sudo pip --upgrade install elastic-benchmark
+    elastic-upgrade -u $HOME/output/api.uptime.out -d $HOME/output/during_output.txt -p $HOME/output/persistent_resource.txt -b $HOME/subunit/smoke/before_upgrade -a $HOME/subunit/smoke/after_upgrade
+    &apos;&apos;&apos;
 
 }
 </script>
