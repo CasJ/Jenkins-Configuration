@@ -66,8 +66,7 @@ node(&apos;master&apos;) {
 node(&apos;elasticsearch&apos;) {
 
     // Get the server information
-    //elasticsearch_ip = common.get_server_ip()
-    elasticsearch_ip = get_server_ip()
+    elasticsearch_ip = common.get_server_ip()
     elasticsearch_pkey = common.get_server_public_key()
 
 }
@@ -238,19 +237,7 @@ def aggregate_results(host_ip) {
     &quot;&quot;&quot;
 
 }
-
-def get_server_ip() {
-
-    String server_ip
-    String newline = &quot;\\n&quot;
-
-    // Get the IP of the current worker server
-    server_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
-    server_ip = server_ip.trim()
-    echo &quot;The IP address of the server is: ${server_ip}&quot;
-    return (server_ip)
-
-}</script>
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
