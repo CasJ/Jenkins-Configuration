@@ -84,7 +84,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     }
 
     // ssh to deploy host
-    sh &quot;ssh -o StrictHostKeyChecking=no root@172.24.0.21&quot;
+    sh &quot;ssh -t -t -o StrictHostKeyChecking=no root@172.24.0.21&quot;
     
     // Get the workspace directory in the agent
     workspace_dir = pwd()
