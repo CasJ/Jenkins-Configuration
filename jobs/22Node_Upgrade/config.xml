@@ -46,21 +46,15 @@ String onmetal_ip, elasticsearch_ip, elasticsearch_pkey
 // will fail:
 //  - from_release
 //  - to_release
-//  - datacenter [&apos;dfw&apos; | &apos;iad&apos;]
 
 
 // *******************************
 stage &apos;Pre-Deployment&apos;
 // *******************************
 
-echo &apos;Provisioning the and preparing it to run OSA&apos;
+echo &apos;Load scripts and connect to cloud 5&apos;
 node(&apos;master&apos;) {
     
-    // Copy the Rax key from the Jenkins master
-    dir(&apos;/home/ubuntu&apos;) {
-        stash includes: &apos;.raxpub&apos;, name: &apos;raxpub&apos;
-    }
-
     // Load the external functions using master since the git command
     // might not be available at the agent yet
     fileLoader.withGit(&apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
@@ -78,25 +72,27 @@ node(&apos;elasticsearch&apos;) {
 
 }
 
-node(&apos;onmetal-provisioner&apos;) {
+node(&apos;bme-jenkins-slave-n01&apos;) {
 
-    // Wait for the agent to finish running cloud-init
-    common.wait_for_agent_setup()
+    // Connect to f5 vpn  
+    withCredentials([[$class: &apos;UsernamePasswordMultiBinding&apos;, credentialsId: &apos;b4df0136-d403-4e1c-a62b-10d751505d77&apos;,
+    usernameVariable: &apos;CLOUD_USER&apos;, passwordVariable: &apos;CLOUD_PASS&apos;]]) {
+    
+    sh &apos;f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;&apos;
+    sh &apos;sleep 10&apos;
+    
+    }
 
+    // ssh to deploy host
+    sh &quot;ssh -o StrictHostKeyChecking=no root@172.24.0.21&quot;
+    
     // Get the workspace directory in the agent
     workspace_dir = pwd()
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Download the project repository and paste the Rax key
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
-    unstash &apos;raxpub&apos;
-    
-    // Provision the onMetal host
-    onmetal_ip = osa.onmetal_provision(datacenter)
-    //onmetal_ip = &apos;172.99.85.70&apos;
 
-    // Provision the VMs in the onMetal host
-    osa.vm_provision()
 
     // Prepare the VMs to run OpenStack
     osa.vm_preparation_for_osa(from_release)
