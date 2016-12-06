@@ -38,6 +38,7 @@
     <script>#!/usr/bin/env groovy
 
 def osa, common
+String workspace_dir
 String host_ip, elasticsearch_ip, elasticsearch_pkey
 
 // Jenkins must provide these variables as parameters or the build 
@@ -75,14 +76,21 @@ node(&apos;cas-agent&apos;) {
     // Wait for cloud-init to finish
     common.wait_for_agent_setup()
 
+    // Get the workspace directory in the agent
+    workspace_dir = pwd()
+    echo &quot;The workspace directory is ${workspace_dir}&quot;
+
     // Get the agent IP
     host_ip = common.get_server_ip()
 
     // Add the elasticsearch public key to the deployed onmetal host
-    //common.add_key_to_server(elasticsearch_pkey)
+    common.add_key_to_server(elasticsearch_pkey)
 
     // Deploy OpenStack
-    //osa.deploy_openstack_aio(from_release)
+    osa.deploy_openstack(from_release)
+
+    // Install latest version of Tempest in the host
+    osa.configure_tempest()
 
 }
 
@@ -94,16 +102,13 @@ stage &apos;Post-Deployment Validation&apos;
 echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;cas-agent&apos;) {
    
-    // Install latest version of Tempest in the host
-    //osa.install_tempest()
-
     // Run the smoke tests
-    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;)
+    osa.run_tempest_smoke_testt(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
-    //osa.install_persistent_resources_tests()
-    //osa.run_persistent_resources_tests(&apos;create&apos;)
-    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
+    osa.install_persistent_resources_tests()
+    osa.run_persistent_resources_tests(&apos;create&apos;)
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;before_upgrade&apos;)
     
 }
 
@@ -114,21 +119,21 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;cas-agent&apos;) {
     
     //Setup during upgrade test
-    //osa.install_during_upgrade_tests()
+    osa.install_during_upgrade_tests()
     
     // Setup API uptime tests
-    //osa.install_api_uptime_tests()
+    osa.install_api_uptime_tests()
 
     //Start During Upgrade Test
-    //osa.start_during_test()
+    osa.start_during_test()
   
     // Start API uptime tests
-    //osa.start_api_uptime_tests()
+    osa.start_api_uptime_tests()
 
 }
 
 // *******************************
-stage &apos;Rolling Upgrade&apos;
+stage &apos;Upgrade&apos;
 // *******************************
 
 echo &quot;Upgrading OpenStack from ${from_release} to ${to_release}&quot;
@@ -149,10 +154,10 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;cas-agent&apos;) {
 
     //Stop During Upgrade Test
-    //osa.stop_during_test()  
+    osa.stop_during_test()  
 
     // Stop API uptime tests
-    //osa.stop_api_uptime_tests()  
+    osa.stop_api_uptime_tests()  
 
 }
 
@@ -164,11 +169,11 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;cas-agent&apos;) {
  
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;)
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
-    //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
-    //osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
+    osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
+    osa.run_persistent_resources_tests(&apos;cleanup&apos;)    
 
 }
 
@@ -180,8 +185,8 @@ echo &apos;Parsing the test results and submitting them to ElasticSearch&apos;
 node(&apos;cas-agent&apos;){
     
     // Pase persistent resource results
-    //osa.setup_parse_persistent_resources()
-    //osa.parse_persistent_resources_tests()
+    osa.setup_parse_persistent_resources()
+    osa.parse_persistent_resources_tests()
 
 }
 
@@ -193,6 +198,20 @@ node(&apos;elasticsearch&apos;){
     //Push data to ES
     osa.parse_results()
     
+}
+
+// *******************************
+stage &apos;Clean Up&apos;
+// *******************************
+
+echo &apos;Deleting the OpenStack host&apos;
+node(&apos;cas-agent&apos;) {
+
+    // There is actually nothing to be done here since Jenkins will take
+    // care of deleting the VM. This stage is left in the pipeline just
+    // for reference.
+    println &quot;The host ${host_ip} will be deleted by Jenkins in 5 minutes.&quot;
+
 }</script>
     <sandbox>true</sandbox>
   </definition>
