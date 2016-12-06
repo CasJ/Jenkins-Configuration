@@ -87,10 +87,10 @@ node(&apos;cas-agent&apos;) {
     //common.add_key_to_server(elasticsearch_pkey)
 
     // Deploy OpenStack
-    osa.deploy_openstack(from_release)
+    //osa.deploy_openstack(from_release)
 
     // Install latest version of Tempest in the host
-    osa.configure_tempest()
+    //osa.configure_tempest()
 
 }
 
@@ -103,7 +103,7 @@ echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;cas-agent&apos;) {
    
     // Run the smoke tests
-    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
+    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
@@ -169,7 +169,7 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;cas-agent&apos;) {
  
     // Run the tempest tests
-    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
+    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
@@ -193,10 +193,10 @@ node(&apos;cas-agent&apos;){
 node(&apos;elasticsearch&apos;){
     
     //Pull data from the system and places it on ES vm
-    //osa.aggregate_results(host_ip)
+    osa.aggregate_results(host_ip)
 
     //Push data to ES
-    //osa.parse_results()
+    osa.parse_results()
     
 }
 
