@@ -196,7 +196,7 @@ node(&apos;elasticsearch&apos;){
     osa.aggregate_results(host_ip)
 
     //Push data to ES
-    parse_results()
+    osa.parse_results()
     
 }
 
@@ -214,16 +214,6 @@ node(&apos;cas-agent&apos;) {
 
 }
 
-def parse_results() {
-	
-    sh &apos;&apos;&apos;
-    rm -rf elastic-benchmark
-    git clone https://github.com/osic/elastic-benchmark
-    sudo pip install --upgrade elastic-benchmark/
-    elastic-upgrade -u $HOME/output/api.uptime.out -d $HOME/output/during_output.txt -p $HOME/output/persistent_resource.txt -b $HOME/subunit/smoke/before_upgrade -a $HOME/subunit/smoke/after_upgrade
-    &apos;&apos;&apos;
-
-}
 </script>
     <sandbox>true</sandbox>
   </definition>
