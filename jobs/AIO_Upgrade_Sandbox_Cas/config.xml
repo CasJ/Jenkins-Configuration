@@ -226,7 +226,11 @@ def aggregate_results(host_ip) {
     } || {
     echo &apos;No output directory found.&apos;
     }
-    #scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/subunit/ \$HOME || echo &apos;No subunit directory found.&apos;
+    {
+    scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/subunit/ \$HOME
+    } || {
+    echo &apos;No subunit directory found.&apos;
+    }
     &quot;&quot;&quot;
 
 }</script>
