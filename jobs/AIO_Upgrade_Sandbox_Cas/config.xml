@@ -193,8 +193,7 @@ node(&apos;cas-agent&apos;){
 node(&apos;elasticsearch&apos;){
     
     //Pull data from the system and places it on ES vm
-    //osa.aggregate_results(host_ip)
-    aggregate_results(host_ip)
+    osa.aggregate_results(host_ip)
 
     //Push data to ES
     parse_results()
