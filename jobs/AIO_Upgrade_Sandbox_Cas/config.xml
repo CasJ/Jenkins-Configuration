@@ -222,7 +222,8 @@ def aggregate_results(host_ip) {
 
     //Pull persistent, during, api, smoke results from onmetal to ES vm
     def host = &quot;${host_ip}&quot;.trim()
-    println &quot;==${host_ip}==&quot;
+    
+    println &quot;==${host}==&quot;
     sh &quot;&quot;&quot;
     {
     scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/output/ \$HOME
