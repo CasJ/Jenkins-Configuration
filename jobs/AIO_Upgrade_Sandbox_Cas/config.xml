@@ -192,6 +192,9 @@ node(&apos;cas-agent&apos;){
 
 node(&apos;elasticsearch&apos;){
     
+    // Install/upgrade the parser in ElasticSearch 
+    osa.install_parser()
+    
     //Pull data from the system and places it on ES vm
     osa.aggregate_results(host_ip)
 
