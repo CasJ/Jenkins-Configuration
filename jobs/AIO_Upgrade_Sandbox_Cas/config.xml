@@ -240,7 +240,7 @@ def aggregate_results(host_ip) {
 def get_server_ip() {
 
     String server_ip
-    String newline = &quot;\n&quot;
+    String newline = &quot;\\n&quot;
 
     // Get the IP of the current worker server
     server_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
