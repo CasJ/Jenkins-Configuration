@@ -222,7 +222,7 @@ def aggregate_results(host_ip) {
     //Pull persistent, during, api, smoke results from onmetal to ES vm
     sh &quot;&quot;&quot;
     {
-    scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:/home/ubuntu/output/ \$HOME
+    `scp -o StrictHostKeyChecking=no -r ubuntu@${host_ip}:\$HOME/output/ \$HOME`
     } || {
     echo &apos;No output directory found.&apos;
     }
