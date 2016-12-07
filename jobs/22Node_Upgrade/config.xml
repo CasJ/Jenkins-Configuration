@@ -81,6 +81,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     sh &quot;&quot;&quot;
     f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;
     sleep 10
+    rm -rf qa-jenkins-onmetal
     git clone https://github.com/dankolbrs/qa-jenkins-onmetal.git
     cd qa-jenkins-onmetal
     echo &quot;[deploy_node]&quot; &gt;&gt; hosts
