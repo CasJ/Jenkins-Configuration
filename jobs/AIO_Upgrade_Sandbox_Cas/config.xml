@@ -222,7 +222,7 @@ node(&apos;cas-agent&apos;) {
 
 // ************************ Extra test functions *********************
 
-def run_tempest_smoke_tests(results_file = &apos;results&apos;, elasticsearch_ip = null) {
+def run_tempest_smoke_tests(results_file = &apos;results&apos;, elasticsearch_ip = null, host_ip = null) {
 
     println &quot;${host_ip}&quot;
     quiero que falle
@@ -246,7 +246,7 @@ def run_tempest_smoke_tests(results_file = &apos;results&apos;, elasticsearch_ip
         failures = failures.substring(0,failures.indexOf(newline)).toInteger()
         if (failures &gt; 1) {
 	    println &apos;Parsing failed smoke&apos;
-            if (elasticsearch_ip != null) {
+            if (elasticsearch_ip != null &amp;&amp; host_ip != null) {
 	        aggregate_parse_failed_smoke(host_ip, results_file, elasticsearch_ip)
             }
             error &quot;${failures} tests from the Tempest smoke tests failed, stopping the pipeline.&quot;
