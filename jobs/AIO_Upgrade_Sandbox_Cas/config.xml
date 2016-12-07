@@ -224,7 +224,8 @@ node(&apos;cas-agent&apos;) {
 
 def run_tempest_smoke_tests(results_file = &apos;results&apos;, elasticsearch_ip = null) {
 
-    println host_ip
+    println &quot;${host_ip}&quot;&quot;
+    quiero que falle
     String newline = &quot;\n&quot;
     def tempest_output, failures
 
