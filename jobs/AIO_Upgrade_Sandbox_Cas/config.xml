@@ -81,7 +81,7 @@ node(&apos;cas-agent&apos;) {
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
     // Get the agent IP
-    host_ip = common.get_server_ip()
+    host_ip = get_server_ip()
     println &quot;**${host_ip}**&quot;
 
     // Add the elasticsearch public key to the deployed onmetal host
@@ -194,13 +194,13 @@ node(&apos;cas-agent&apos;){
 node(&apos;elasticsearch&apos;){
     
     // Installupgrade the parser in ElasticSearch 
-    osa.install_parser()
+    //osa.install_parser()
     
     //Pull data from the system and places it on ES vm
-    osa.aggregate_results(host_ip)
+    //osa.aggregate_results(host_ip)
 
     //Push data to ES
-    osa.parse_results()
+    //osa.parse_results()
     
 }
 
@@ -218,7 +218,19 @@ node(&apos;cas-agent&apos;) {
 
 }
 
-</script>
+
+// ************************ Extra test functions *********************
+
+def get_server_ip() {
+
+    String server_ip
+
+    // Get the IP of the current worker server
+    server_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+    echo &quot;The IP address of the server is: ${server_ip}!&quot;
+    return (server_ip)
+
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
