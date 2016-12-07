@@ -227,8 +227,8 @@ def get_server_ip() {
 
     // Get the IP of the current worker server
     server_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
-    echo &quot;The IP address of the server is: ${server_ip}!&quot;
-    return (server_ip)
+    echo &quot;The IP address of the server is: ${server_ip}&quot;
+    return (server_ip.trim())
 
 }</script>
     <sandbox>true</sandbox>
