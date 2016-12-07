@@ -93,9 +93,11 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     // Download the project repository and paste the Rax key
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
 
+    test_ip1 = common.get_server_ip()
+    test_ip2 = osa.get_server_ip()
 
     // Prepare the VMs to run OpenStack
-    osa.vm_preparation_for_osa(from_release)
+    //osa.vm_preparation_for_osa(from_release)
 
     // Add the elasticsearch public key to the deployed onmetal host
     // common.add_key_to_server(onmetal_ip, elasticsearch_pkey)
