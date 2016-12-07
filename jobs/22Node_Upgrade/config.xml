@@ -80,7 +80,8 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     
     sh &apos;f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;&apos;
     sh &apos;sleep 10&apos;
-
+    sh &apos;echo &quot;[deploy_node]&quot; &gt;&gt; hosts&apos;
+    sh &apos;echo &quot;intelci-node ansible_ssh_host=172.24.0.21&quot; &gt;&gt; hosts&apos;
     osa.bme_configure_tempest()
     osa.bme_run_tempest_smoke_test()    
     sh &apos;f5fpc --stop &amp;&apos;
