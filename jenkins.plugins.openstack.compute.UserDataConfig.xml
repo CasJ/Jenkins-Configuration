@@ -80,6 +80,7 @@ runcmd:
 
 runcmd:
  - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts
+ - ssh-keygen -t rsa -b 4096 -f $HOME/.ssh/id_rsa -q -N &quot;&quot;
 
 packages:
  - git
