@@ -84,18 +84,20 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     }
 
     // ssh to deploy host
-    sh &quot;ssh -t -t -o StrictHostKeyChecking=no root@172.24.0.21&quot;
+    sh &quot;ssh -t -t -o StrictHostKeyChecking=no root@172.24.0.21&quot; &apos;&apos;&apos;
     
-    // Get the workspace directory in the agent
-    workspace_dir = pwd()
-    echo &quot;The workspace directory is ${workspace_dir}&quot;
+    server_ip = sh returnStdout: true, script: &apos;ip addr show eth0 | grep &quot;inet\\b&quot; | awk \&apos;{print $2}\&apos; | cut -d/ -f1&apos;
+    
 
-    // Download the project repository and paste the Rax key
-    git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    &apos;&apos;&apos;
+    echo &quot;The IP address of the server is: ${server_ip}&quot;
+    //// Get the workspace directory in the agent
+    //workspace_dir = pwd()
+    //echo &quot;The workspace directory is ${workspace_dir}&quot;
 
-    test_ip1 = common.get_server_ip()
-    test_ip2 = osa.get_server_ip()
-
+    //// Download the project repository and paste the Rax key
+    //git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
+    
     // Prepare the VMs to run OpenStack
     //osa.vm_preparation_for_osa(from_release)
 
