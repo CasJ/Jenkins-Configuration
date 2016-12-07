@@ -82,6 +82,7 @@ node(&apos;cas-agent&apos;) {
 
     // Get the agent IP
     host_ip = common.get_server_ip()
+    println &quot;**${host_ip}**&quot;
 
     // Add the elasticsearch public key to the deployed onmetal host
     //common.add_key_to_server(elasticsearch_pkey)
@@ -192,7 +193,7 @@ node(&apos;cas-agent&apos;){
 
 node(&apos;elasticsearch&apos;){
     
-    // Install/upgrade the parser in ElasticSearch 
+    // Installupgrade the parser in ElasticSearch 
     osa.install_parser()
     
     //Pull data from the system and places it on ES vm
