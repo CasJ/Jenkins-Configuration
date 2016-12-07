@@ -103,7 +103,7 @@ echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;cas-agent&apos;) {
    
     // Run the smoke tests
-    run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip)
+    run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip, host_ip)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
@@ -169,7 +169,7 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;cas-agent&apos;) {
  
     // Run the tempest tests
-    run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
+    run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip, host_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
