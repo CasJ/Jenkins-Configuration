@@ -85,6 +85,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     cd qa-jenkins-onmetal
     echo &quot;[deploy_node]&quot; &gt;&gt; hosts
     echo &quot;intelci-node ansible_ssh_host=172.24.0.21&quot; &gt;&gt; hosts
+    ls -lah
     &quot;&quot;&quot;
     
     osa.bme_configure_tempest()
