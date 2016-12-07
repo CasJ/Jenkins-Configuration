@@ -169,7 +169,7 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;cas-agent&apos;) {
  
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
+    run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
@@ -227,11 +227,11 @@ def run_tempest_smoke_tests(results_file = &apos;results&apos;, elasticsearch_ip
     String newline = &quot;\n&quot;
     def tempest_output, failures
 
-    // Run the tests and store the results in ~/subunit/before    
+    // Run the tests and store the results in ~/subunit/before
     tempest_output = sh returnStdout: true, script: &quot;&quot;&quot;
     cd \$HOME/tempest/
     stream_id=`cat .testrepository/next-stream`
-    ostestr --no-slowest --regex smoke
+    ostestr --no-slowest --regex smoke || echo &apos;Some tests failed.&apos;
     mkdir -p \$HOME/subunit/smoke
     cp .testrepository/\$stream_id \$HOME/subunit/smoke/${results_file}
     &quot;&quot;&quot;
