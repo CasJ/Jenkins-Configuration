@@ -82,11 +82,11 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;
     sleep 10
     rm -rf qa-jenkins-onmetal
-    git clone https://github.com/dankolbrs/qa-jenkins-onmetal.git
-    cd qa-jenkins-onmetal
+    &quot;&quot;&quot;
+    git &apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;
+    sh &quot;&quot;&quot;
     echo &quot;[deploy_node]&quot; &gt;&gt; hosts
     echo &quot;intelci-node ansible_ssh_host=172.24.0.21&quot; &gt;&gt; hosts
-    ls -lah
     &quot;&quot;&quot;
     
     osa.bme_configure_tempest()
