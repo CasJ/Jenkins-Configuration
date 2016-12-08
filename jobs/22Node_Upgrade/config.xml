@@ -52,7 +52,7 @@ String onmetal_ip, elasticsearch_ip, elasticsearch_pkey
 stage &apos;Pre-Deployment&apos;
 // *******************************
 
-echo &apos;Load scripts and connect to cloud 5&apos;
+echo &apos;Load Libs&apos;
 node(&apos;bme-jenkins-slave-n01&apos;) {
     
     // Load the external functions using master since the git command
