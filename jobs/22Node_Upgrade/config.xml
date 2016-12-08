@@ -57,7 +57,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     
     // Load the external functions using master since the git command
     // might not be available at the agent yet
-    fileLoader.withGit(&apos;https://github.com/kvcobb/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+    fileLoader.withGit(&apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
     }
@@ -83,7 +83,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     sleep 10
     rm -rf qa-jenkins-onmetal
     &quot;&quot;&quot;
-    git &apos;https://github.com/kvcobb/qa-jenkins-onmetal.git&apos;
+    git &apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;
     sh &quot;&quot;&quot;
     echo &quot;[deploy_node]&quot; &gt; hosts
     echo &quot;intelci-node ansible_ssh_host=172.24.0.21 ansible_ssh_user=root&quot; &gt;&gt; hosts
