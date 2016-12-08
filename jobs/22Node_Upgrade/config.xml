@@ -88,6 +88,9 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     echo &quot;[deploy_node]&quot; &gt; hosts
     echo &quot;intelci-node ansible_ssh_host=172.24.0.21 ansible_ssh_user=root&quot; &gt;&gt; hosts
     &quot;&quot;&quot;
+    sh &quot;&quot;&quot;
+    scp scripts/bme_tempest_run.sh 172.24.0.21:/root/bme_tempest_run.sh
+    &quot;&quot;&quot;
     
     osa.bme_configure_tempest()
     osa.bme_run_tempest_smoke_test()    
