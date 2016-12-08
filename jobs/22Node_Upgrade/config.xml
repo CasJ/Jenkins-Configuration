@@ -93,7 +93,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     &quot;&quot;&quot;
     
     osa.bme_configure_tempest()
-    //osa.bme_run_tempest_smoke_test()    
+    osa.bme_run_tempest_smoke_test()    
     sh &apos;f5fpc --stop &amp;&apos;
     }
 
