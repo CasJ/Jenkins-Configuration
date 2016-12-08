@@ -92,7 +92,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     scp scripts/bme_tempest_run.sh root@172.24.0.21:/root/bme_tempest_run.sh
     &quot;&quot;&quot;
     
-    osa.bme_configure_tempest()
+    //osa.bme_configure_tempest()
     osa.bme_run_tempest_smoke_test()    
     sh &apos;f5fpc --stop &amp;&apos;
     }
