@@ -81,33 +81,7 @@ runcmd:
 runcmd:
  - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts
  - echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld&quot; &gt; /home/ubuntu/.ssh/id_rsa.pub
- - echo &quot;-----BEGIN RSA PRIVATE KEY-----
-MIIEogIBAAKCAQEAuUqiNt/ucUCKF5+j05XDGZ+IBI5RCGS4awL7MG9N9/GMXPBU
-mGp4K+ki+aWIt7uQMflxIPz/Tf0YJOL9UjWEC1UlMNGcqgTIZyhRHYBqLINlBPee
-mwHxg+jKgbmhFDkS+6bB8OYaBmdiaieUiUMcf4w4Dn7QXQRreKge0DadaitUarMe
-JBa+6++w/s4ILxr8wJJY8mwe1+JASOb5orINbLQqDrH66puE4lCA+GlYZu0lDnt6
-uSglZXvMWqTQlrVfsUtUqwQMKS+Uc/w4kuWosKuKvjE9OklzfpjcWG8PkDuoWO2u
-nZkihhHPRFqPx+P3i6RDHdkt9SBtGktI/S8pXQIDAQABAoIBAD9visuorLR/OQfP
-csIMgsfx8xpEMv/ho7WXRrIVWScqvjhPW1b3FH9MCNpZTs5AW6SQVqfJlgp4PNzc
-DYgopDVRCDOHf9BBZO7UQbkM7sygi2RA9j7xUmMrvrDdAYWv6IzZUYqM7JoGqQ3Y
-0SSRIl+UfNiRl/pQeg7L2AjGuevPpqzhnYR1B+hXlvUGFOqkWA8YwKJFDY06m/4M
-0OKbt9TbnWIEVRZtcnjdGm/Jq2tLA4VmQzTPn/CCHb/HsgEucILyAAT5kvHuQMbz
-KuQHsJWgUTH3iNd+2ZfmtQIn6Xnbh8KiEAOBRuMwDc77rF0WWf2YnmMbFgtONxYV
-lWcaDM0CgYEA2jTzh7BEitSYhNQq+GLeTEhsLaJszWF+Z/XMUmQBE2kSHhTdl2wp
-iRbvLOPJT/dlzvrOagw+g9/NC/IneMa0Pnb8C9VlAQStharQAb5QSh/2leWuhpy7
-wJ5zV1nVCF2iokfHsVu8rbSeZJ9eEFShQ/QSaX38CtdAUESsi4TPwLsCgYEA2WJB
-IRF/S9eLBrxTyaGSuNm3PzX2w1Efv88bcPmzhBaOf8nvU2ixNLyh28E93H9KvcZv
- Rkn1P7dtqubqbCVjxTchyG4AtjECxjHhYS5ZO66f0PV7pDj94M10OY4Ucn9RESHv
-IqbhKf/SFUbIOdecwfIzngvIcxsWqHaXnWmXiMcCgYBE4ZI+sxXv/UxoIdGutwcV
-bYc4oJ1X9/6/MohdOdRdHD3r4QpSUoKKFANMWFukMqSgweuG7naNiohfzQFIzvD3
-Bvhpg+NuftuH5nPjGQCfZZehme+N7swV8e7XFDR7f5NnRuFyy1K0Qt/9Q5Gd9hky
-Kknloy98/JYAwKz3HeW3IQKBgH7Qat43ruM3ossTIm4F6+oaWGRvvrzCnpru3ztQ
-8ACmiArUauFlubriMCpa2RPAzoFXOaLvkjrRbxC8FRVx2no6Z2LdiVy/yraEcs6W
-k0fV3zWvf6mV9cUnFh5dXGBPFaPBABhe8gvmSVBQMo5L0g7ylFom1ZEQxG8Sf/A8
-oUIRAoGAA5WVnI+anH8fBpZyBEm5IGFeoj1cKnKWz865S2cGLRInmkl8F5TuOxWA
-UKj1Gj6tEtDf9SzOwvXP8b7ZU4+lWybUQE2DIJpi3pGrdWXbwmHkUxFf3A+pXmQ6
-xNLeZsqApSSNypWbGUuTMpof6/Md+eZvzX7y6GbyhX/dYcCGDIc=
------END RSA PRIVATE KEY-----&quot; &gt; /home/ubuntu/.ssh/id_rsa.pub
+
 # - ssh-keygen -t rsa -b 4096 -f /home/ubuntu/.ssh/id_rsa -q -N &quot;&quot;
 
 # Install the following packages
