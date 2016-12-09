@@ -187,13 +187,13 @@ node(&apos;cas-agent&apos;){
 node(&apos;elasticsearch&apos;){
     
     // Installupgrade the parser in ElasticSearch 
-    //osa.install_parser()
+    osa.install_parser()
     
     //Pull data from the system and places it on ES vm
-    //osa.aggregate_results(host_ip)
+    osa.aggregate_results(host_ip)
 
     //Push data to ES
-    //osa.parse_results()
+    osa.parse_results()
     
 }
 
