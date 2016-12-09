@@ -22,7 +22,6 @@
           <description>Parameter used to specify what OpenStack release to upgrade to.</description>
           <choices class="java.util.Arrays$ArrayList">
             <a class="string-array">
-              <string>stable/mitaka</string>
               <string>stable/newton</string>
               <string>master</string>
             </a>
