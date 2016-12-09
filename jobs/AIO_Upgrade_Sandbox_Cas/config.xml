@@ -39,7 +39,7 @@
 
 def osa, common
 String workspace_dir
-String host_ip, elasticsearch_ip, elasticsearch_pkey, host_pkey
+String host_ip, elasticsearch_ip
 
 // Jenkins must provide these variables as parameters or the build 
 // will fail:
@@ -67,7 +67,6 @@ node(&apos;elasticsearch&apos;) {
 
     // Get the server information
     elasticsearch_ip = common.get_server_ip()
-    elasticsearch_pkey = common.get_server_public_key()
 
 }
 
@@ -80,25 +79,14 @@ node(&apos;cas-agent&apos;) {
     workspace_dir = pwd()
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
-    // Get the agent IP and public key
+    // Get the agent IP
     host_ip = common.get_server_ip()
-    host_pkey = common.get_server_public_key()
-
-    // Add the elasticsearch public key to the deployed onmetal host
-    //common.add_key_to_server(elasticsearch_pkey)
 
     // Deploy OpenStack
-    //osa.deploy_openstack(from_release)
+    osa.deploy_openstack(from_release)
 
     // Install latest version of Tempest in the host
-    //osa.configure_tempest()
-
-}
-
-node(&apos;elasticsearch&apos;) {
-
-    // Add the elasticsearch public key to the deployed onmetal host
-    common.add_key_to_server(host_pkey)
+    osa.configure_tempest()
 
 }
 
@@ -110,7 +98,7 @@ echo &apos;Running tests to validate the OpenStack deployment&apos;
 node(&apos;cas-agent&apos;) {
    
     // Run the smoke tests
-    osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip, host_ip)
+    //osa.run_tempest_smoke_tests(&apos;before_upgrade&apos;, elasticsearch_ip, host_ip)
 
     // Install and run the persistent resources creation
     //osa.install_persistent_resources_tests()
@@ -176,7 +164,7 @@ echo &apos;Validating the OpenStack deployment after the upgrade&apos;
 node(&apos;cas-agent&apos;) {
  
     // Run the tempest tests
-    osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip, host_ip)
+    //osa.run_tempest_smoke_tests(&apos;after_upgrade&apos;, elasticsearch_ip, host_ip)
 
     // Run the persistent resources validation then clean them up
     //osa.run_persistent_resources_tests(&apos;verify&apos;, &apos;after_upgrade&apos;)
@@ -200,13 +188,13 @@ node(&apos;cas-agent&apos;){
 node(&apos;elasticsearch&apos;){
     
     // Installupgrade the parser in ElasticSearch 
-    osa.install_parser()
+    //osa.install_parser()
     
     //Pull data from the system and places it on ES vm
-    osa.aggregate_results(host_ip)
+    //osa.aggregate_results(host_ip)
 
     //Push data to ES
-    osa.parse_results()
+    //osa.parse_results()
     
 }
 
