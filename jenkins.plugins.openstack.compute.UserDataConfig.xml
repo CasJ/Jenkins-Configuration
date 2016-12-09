@@ -81,7 +81,7 @@ runcmd:
 runcmd:
  - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts
  - echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld&quot; &gt; /home/ubuntu/.ssh/id_rsa.pub
-
+ - echo &quot;-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAuUqiNt/ucUCKF5+j05XDGZ+IBI5RCGS4awL7MG9N9/GMXPBU&quot; &gt; /home/ubuntu/.ssh/id_rsa
 # - ssh-keygen -t rsa -b 4096 -f /home/ubuntu/.ssh/id_rsa -q -N &quot;&quot;
 
 # Install the following packages
