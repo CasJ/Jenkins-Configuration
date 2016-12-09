@@ -95,46 +95,43 @@ packages:
  - libxslt1-dev 
  - libpq-dev
 
-# This adds each entry to ~/.ssh/authorized_keys for the configured user or the
-# first user defined in the user definition directive.
-# - Allowing: ElasticSearch server to access the VM 
+# Allowing: ElasticSearch server to access the VM 
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDORlpt1kdCY8awA0W6GX5roelSqRmDyRNgU6iYIfd2CH4dR9fsJxXZtcDVkISJ/fiOEQxv29S3RsDZR6/MyFvgtH1EThCZZupV2MWq9VBdPO5mPRFpNYSl9TkKaVE0ByNjY3a+ng1cQLQYO4D2gDA/TsxbtJH2AUsh5mc4PuOPSm3y4aWIlDsClqtPlT8/aBzMh5svYK4vZfVHdmuabcyDcrPbaQL+GrNlSwb+sM0d0u5v+ebx+Fxvl0HI9FVrL/IaeH8vkHJMJSkT5HWIR1h0Ysl+BGAShSwS9t/HulpWOk/+1bPulXKNzqazb0I1D/AFjEep1iRFTVmEHkVdcryN ubuntu@ci-elasticsearch
 
-# Send pre-generated ssh private keys to the server
-# If these are present, they will be written to /etc/ssh and
-# new random keys will not be generated
-ssh_keys:
-  rsa_private: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIEogIBAAKCAQEAuUqiNt/ucUCKF5+j05XDGZ+IBI5RCGS4awL7MG9N9/GMXPBU
-    mGp4K+ki+aWIt7uQMflxIPz/Tf0YJOL9UjWEC1UlMNGcqgTIZyhRHYBqLINlBPee
-    mwHxg+jKgbmhFDkS+6bB8OYaBmdiaieUiUMcf4w4Dn7QXQRreKge0DadaitUarMe
-    JBa+6++w/s4ILxr8wJJY8mwe1+JASOb5orINbLQqDrH66puE4lCA+GlYZu0lDnt6
-    uSglZXvMWqTQlrVfsUtUqwQMKS+Uc/w4kuWosKuKvjE9OklzfpjcWG8PkDuoWO2u
-    nZkihhHPRFqPx+P3i6RDHdkt9SBtGktI/S8pXQIDAQABAoIBAD9visuorLR/OQfP
-    csIMgsfx8xpEMv/ho7WXRrIVWScqvjhPW1b3FH9MCNpZTs5AW6SQVqfJlgp4PNzc
-    DYgopDVRCDOHf9BBZO7UQbkM7sygi2RA9j7xUmMrvrDdAYWv6IzZUYqM7JoGqQ3Y
-    0SSRIl+UfNiRl/pQeg7L2AjGuevPpqzhnYR1B+hXlvUGFOqkWA8YwKJFDY06m/4M
-    0OKbt9TbnWIEVRZtcnjdGm/Jq2tLA4VmQzTPn/CCHb/HsgEucILyAAT5kvHuQMbz
-    KuQHsJWgUTH3iNd+2ZfmtQIn6Xnbh8KiEAOBRuMwDc77rF0WWf2YnmMbFgtONxYV
-    lWcaDM0CgYEA2jTzh7BEitSYhNQq+GLeTEhsLaJszWF+Z/XMUmQBE2kSHhTdl2wp
-    iRbvLOPJT/dlzvrOagw+g9/NC/IneMa0Pnb8C9VlAQStharQAb5QSh/2leWuhpy7
-    wJ5zV1nVCF2iokfHsVu8rbSeZJ9eEFShQ/QSaX38CtdAUESsi4TPwLsCgYEA2WJB
-    IRF/S9eLBrxTyaGSuNm3PzX2w1Efv88bcPmzhBaOf8nvU2ixNLyh28E93H9KvcZv
-    Rkn1P7dtqubqbCVjxTchyG4AtjECxjHhYS5ZO66f0PV7pDj94M10OY4Ucn9RESHv
-    IqbhKf/SFUbIOdecwfIzngvIcxsWqHaXnWmXiMcCgYBE4ZI+sxXv/UxoIdGutwcV
-    bYc4oJ1X9/6/MohdOdRdHD3r4QpSUoKKFANMWFukMqSgweuG7naNiohfzQFIzvD3
-    Bvhpg+NuftuH5nPjGQCfZZehme+N7swV8e7XFDR7f5NnRuFyy1K0Qt/9Q5Gd9hky
-    Kknloy98/JYAwKz3HeW3IQKBgH7Qat43ruM3ossTIm4F6+oaWGRvvrzCnpru3ztQ
-    8ACmiArUauFlubriMCpa2RPAzoFXOaLvkjrRbxC8FRVx2no6Z2LdiVy/yraEcs6W
-    k0fV3zWvf6mV9cUnFh5dXGBPFaPBABhe8gvmSVBQMo5L0g7ylFom1ZEQxG8Sf/A8
-    oUIRAoGAA5WVnI+anH8fBpZyBEm5IGFeoj1cKnKWz865S2cGLRInmkl8F5TuOxWA
-    UKj1Gj6tEtDf9SzOwvXP8b7ZU4+lWybUQE2DIJpi3pGrdWXbwmHkUxFf3A+pXmQ6
-    xNLeZsqApSSNypWbGUuTMpof6/Md+eZvzX7y6GbyhX/dYcCGDIc=
-    -----END RSA PRIVATE KEY-----
+write_files:
+ - content: !!binary |
+     -----BEGIN RSA PRIVATE KEY-----
+     MIIEogIBAAKCAQEAuUqiNt/ucUCKF5+j05XDGZ+IBI5RCGS4awL7MG9N9/GMXPBU
+     mGp4K+ki+aWIt7uQMflxIPz/Tf0YJOL9UjWEC1UlMNGcqgTIZyhRHYBqLINlBPee
+     mwHxg+jKgbmhFDkS+6bB8OYaBmdiaieUiUMcf4w4Dn7QXQRreKge0DadaitUarMe
+     JBa+6++w/s4ILxr8wJJY8mwe1+JASOb5orINbLQqDrH66puE4lCA+GlYZu0lDnt6
+     uSglZXvMWqTQlrVfsUtUqwQMKS+Uc/w4kuWosKuKvjE9OklzfpjcWG8PkDuoWO2u
+     nZkihhHPRFqPx+P3i6RDHdkt9SBtGktI/S8pXQIDAQABAoIBAD9visuorLR/OQfP
+     csIMgsfx8xpEMv/ho7WXRrIVWScqvjhPW1b3FH9MCNpZTs5AW6SQVqfJlgp4PNzc
+     DYgopDVRCDOHf9BBZO7UQbkM7sygi2RA9j7xUmMrvrDdAYWv6IzZUYqM7JoGqQ3Y
+     0SSRIl+UfNiRl/pQeg7L2AjGuevPpqzhnYR1B+hXlvUGFOqkWA8YwKJFDY06m/4M
+     0OKbt9TbnWIEVRZtcnjdGm/Jq2tLA4VmQzTPn/CCHb/HsgEucILyAAT5kvHuQMbz
+     KuQHsJWgUTH3iNd+2ZfmtQIn6Xnbh8KiEAOBRuMwDc77rF0WWf2YnmMbFgtONxYV
+     lWcaDM0CgYEA2jTzh7BEitSYhNQq+GLeTEhsLaJszWF+Z/XMUmQBE2kSHhTdl2wp
+     iRbvLOPJT/dlzvrOagw+g9/NC/IneMa0Pnb8C9VlAQStharQAb5QSh/2leWuhpy7
+     wJ5zV1nVCF2iokfHsVu8rbSeZJ9eEFShQ/QSaX38CtdAUESsi4TPwLsCgYEA2WJB
+     IRF/S9eLBrxTyaGSuNm3PzX2w1Efv88bcPmzhBaOf8nvU2ixNLyh28E93H9KvcZv
+     Rkn1P7dtqubqbCVjxTchyG4AtjECxjHhYS5ZO66f0PV7pDj94M10OY4Ucn9RESHv
+     IqbhKf/SFUbIOdecwfIzngvIcxsWqHaXnWmXiMcCgYBE4ZI+sxXv/UxoIdGutwcV
+     bYc4oJ1X9/6/MohdOdRdHD3r4QpSUoKKFANMWFukMqSgweuG7naNiohfzQFIzvD3
+     Bvhpg+NuftuH5nPjGQCfZZehme+N7swV8e7XFDR7f5NnRuFyy1K0Qt/9Q5Gd9hky
+     Kknloy98/JYAwKz3HeW3IQKBgH7Qat43ruM3ossTIm4F6+oaWGRvvrzCnpru3ztQ
+     8ACmiArUauFlubriMCpa2RPAzoFXOaLvkjrRbxC8FRVx2no6Z2LdiVy/yraEcs6W
+     k0fV3zWvf6mV9cUnFh5dXGBPFaPBABhe8gvmSVBQMo5L0g7ylFom1ZEQxG8Sf/A8
+     oUIRAoGAA5WVnI+anH8fBpZyBEm5IGFeoj1cKnKWz865S2cGLRInmkl8F5TuOxWA
+     UKj1Gj6tEtDf9SzOwvXP8b7ZU4+lWybUQE2DIJpi3pGrdWXbwmHkUxFf3A+pXmQ6
+     xNLeZsqApSSNypWbGUuTMpof6/Md+eZvzX7y6GbyhX/dYcCGDIc=
+     -----END RSA PRIVATE KEY-----
+   path: /home/ubuntu/.ssh/id_rsa
+   permissions: &apos;0555&apos;
 
-  rsa_public: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld ubuntu@cas-jumpbox
+#  rsa_public: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld ubuntu@cas-jumpbox
 </content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
