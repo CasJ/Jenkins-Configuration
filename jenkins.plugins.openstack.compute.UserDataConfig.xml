@@ -97,7 +97,15 @@ packages:
 
 # Allowing: ElasticSearch server to access the VM 
 ssh_authorized_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDORlpt1kdCY8awA0W6GX5roelSqRmDyRNgU6iYIfd2CH4dR9fsJxXZtcDVkISJ/fiOEQxv29S3RsDZR6/MyFvgtH1EThCZZupV2MWq9VBdPO5mPRFpNYSl9TkKaVE0ByNjY3a+ng1cQLQYO4D2gDA/TsxbtJH2AUsh5mc4PuOPSm3y4aWIlDsClqtPlT8/aBzMh5svYK4vZfVHdmuabcyDcrPbaQL+GrNlSwb+sM0d0u5v+ebx+Fxvl0HI9FVrL/IaeH8vkHJMJSkT5HWIR1h0Ysl+BGAShSwS9t/HulpWOk/+1bPulXKNzqazb0I1D/AFjEep1iRFTVmEHkVdcryN ubuntu@ci-elasticsearch</content>
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDORlpt1kdCY8awA0W6GX5roelSqRmDyRNgU6iYIfd2CH4dR9fsJxXZtcDVkISJ/fiOEQxv29S3RsDZR6/MyFvgtH1EThCZZupV2MWq9VBdPO5mPRFpNYSl9TkKaVE0ByNjY3a+ng1cQLQYO4D2gDA/TsxbtJH2AUsh5mc4PuOPSm3y4aWIlDsClqtPlT8/aBzMh5svYK4vZfVHdmuabcyDcrPbaQL+GrNlSwb+sM0d0u5v+ebx+Fxvl0HI9FVrL/IaeH8vkHJMJSkT5HWIR1h0Ysl+BGAShSwS9t/HulpWOk/+1bPulXKNzqazb0I1D/AFjEep1iRFTVmEHkVdcryN ubuntu@ci-elasticsearch
+
+write_files:
+  - content: |
+      cas probando
+    owner: root:root
+    path: /home/ubuntu/.ssh/id_rsa
+    permissions: &apos;0644&apos;
+</content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
