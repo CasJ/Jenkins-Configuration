@@ -80,7 +80,7 @@ runcmd:
 
 runcmd:
  - sudo sed -i &quot;1i127.0.1.1 $(hostname)&quot; /etc/hosts
-# - echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld&quot; &gt; /home/ubuntu/.ssh/id_rsa.pub
+ - echo &quot;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SqI23+5xQIoXn6PTlcMZn4gEjlEIZLhrAvswb0338Yxc8FSYangr6SL5pYi3u5Ax+XEg/P9N/Rgk4v1SNYQLVSUw0ZyqBMhnKFEdgGosg2UE956bAfGD6MqBuaEUORL7psHw5hoGZ2JqJ5SJQxx/jDgOftBdBGt4qB7QNp1qK1Rqsx4kFr7r77D+zggvGvzAkljybB7X4kBI5vmisg1stCoOsfrqm4TiUID4aVhm7SUOe3q5KCVle8xapNCWtV+xS1SrBAwpL5Rz/DiS5aiwq4q+MT06SXN+mNxYbw+QO6hY7a6dmSKGEc9EWo/H4/eLpEMd2S31IG0aS0j9Lyld&quot; &gt; /home/ubuntu/.ssh/id_rsa.pub
 # - ssh-keygen -t rsa -b 4096 -f /home/ubuntu/.ssh/id_rsa -q -N &quot;&quot;
 
 # Install the following packages
@@ -99,10 +99,6 @@ packages:
 # Allowing: ElasticSearch server to access the VM 
 ssh_authorized_keys:
  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDORlpt1kdCY8awA0W6GX5roelSqRmDyRNgU6iYIfd2CH4dR9fsJxXZtcDVkISJ/fiOEQxv29S3RsDZR6/MyFvgtH1EThCZZupV2MWq9VBdPO5mPRFpNYSl9TkKaVE0ByNjY3a+ng1cQLQYO4D2gDA/TsxbtJH2AUsh5mc4PuOPSm3y4aWIlDsClqtPlT8/aBzMh5svYK4vZfVHdmuabcyDcrPbaQL+GrNlSwb+sM0d0u5v+ebx+Fxvl0HI9FVrL/IaeH8vkHJMJSkT5HWIR1h0Ysl+BGAShSwS9t/HulpWOk/+1bPulXKNzqazb0I1D/AFjEep1iRFTVmEHkVdcryN ubuntu@ci-elasticsearch
-
-write_files:
- - content: CiMgVGhpcyBmaWxlIGNvbnRyb2xzIHRoZSBzdGF0ZSBvZiBTRUxpbnV4
-   path: /home/ubuntu/.ssh/test_1
 </content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
