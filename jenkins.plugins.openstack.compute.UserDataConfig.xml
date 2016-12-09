@@ -102,8 +102,7 @@ ssh_authorized_keys:
 write_files:
  - encoding: b64
    content: CiMgVGhpcyBmaWxlIGNvbnRyb2xzIHRoZSBzdGF0ZSBvZiBTRUxpbnV4
-   path: /home/ubuntu/.ssh/test_1
-   permissions: &apos;0644&apos;
+   path: /home/ubuntu/test_1
 </content>
         <providerId>jenkins.plugins.openstack.compute.UserDataConfig</providerId>
       </org.jenkinsci.lib.configprovider.model.Config>
