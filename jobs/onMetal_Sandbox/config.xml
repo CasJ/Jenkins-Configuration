@@ -97,13 +97,16 @@ node(&apos;onmetal-provisioner&apos;) {
     workspace_dir = pwd()
     echo &quot;The workspace directory is ${workspace_dir}&quot;
 
+    // Get the agent IP
+    String provisioner_ip = common.get_server_ip()
+    echo &quot;The IP address of the OnMetal Provisioner is ${provisioner_ip}&quot;
+
     // Download the project repository and paste the Rax key
     git &apos;https://github.com/osic/qa-jenkins-onmetal.git&apos;
     unstash &apos;raxpub&apos;
     
     // Provision the onMetal host
     onmetal_ip = osa.onmetal_provision(datacenter)
-    //onmetal_ip = &apos;172.99.85.70&apos;
 
     // Provision the VMs in the onMetal host
     osa.vm_provision()
@@ -235,6 +238,9 @@ node(&apos;onmetal-provisioner&apos;){
 
 node(&apos;elasticsearch&apos;){
     
+    // Install/upgrade the parser in ElasticSearch
+    //osa.install_parser()
+
     //Pull data from onmetal places it on ES vm
     //osa.aggregate_results(onmetal_ip)
 
