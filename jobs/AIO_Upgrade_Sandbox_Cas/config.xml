@@ -139,7 +139,7 @@ node(&apos;cas-agent&apos;) {
     // Install latest version of Tempest in the host
     //osa.rolling_upgrade(to_release)
     echo &apos;Fake upgrade starting...&apos;
-    sleep time: 2, unit: &apos;MINUTES&apos;
+    sleep time: 1, unit: &apos;MINUTES&apos;
     echo &apos;Fake upgrade finished.&apos;
 
 }
