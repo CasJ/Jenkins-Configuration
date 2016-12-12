@@ -225,7 +225,11 @@ def stop_api_uptime_tests() {
     sh &apos;&apos;&apos;
     sudo touch /usr/api.uptime.stop
     &apos;&apos;&apos;
-    sleep 5
+    // Wait till the results file gets created by the script
+    timeout(time: 10, unit: &apos;SECONDS&apos;) {
+        // some block
+        
+    }
 
 }</script>
     <sandbox>true</sandbox>
