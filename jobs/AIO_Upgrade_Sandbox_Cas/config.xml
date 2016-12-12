@@ -219,7 +219,15 @@ node(&apos;cas-agent&apos;) {
 
 // ************************ Extra test functions *********************
 
-</script>
+def stop_api_uptime_tests() {
+
+    // stop the API uptime tests
+    sh &apos;&apos;&apos;
+    sudo touch /usr/api.uptime.stop
+    &apos;&apos;&apos;
+    sleep 5
+
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
