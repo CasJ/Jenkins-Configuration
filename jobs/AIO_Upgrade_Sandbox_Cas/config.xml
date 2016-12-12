@@ -154,7 +154,7 @@ node(&apos;cas-agent&apos;) {
     //osa.stop_during_test()  
 
     // Stop API uptime tests
-    osa.stop_api_uptime_tests()  
+    stop_api_uptime_tests()  
 
 }
 
