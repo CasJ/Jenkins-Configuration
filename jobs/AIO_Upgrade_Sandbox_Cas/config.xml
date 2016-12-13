@@ -151,7 +151,7 @@ echo &apos;Starting tests that will run continuosly thru upgrade&apos;
 node(&apos;cas-agent&apos;) {
 
     //Stop During Upgrade Test
-    osa.stop_during_test()  
+    stop_during_test()  
 
     // Stop API uptime tests
     //osa.stop_api_uptime_tests()  
@@ -219,7 +219,22 @@ node(&apos;cas-agent&apos;) {
 
 // ************************ Extra test functions *********************
 
-</script>
+def stop_during_test() {
+
+    // Stop during test by creating during.uptime.stop
+    sh &apos;&apos;&apos;
+    sudo touch /usr/during.uptime.stop
+    &apos;&apos;&apos;
+    // Wait up to 10 seconds for the results file gets created by the script
+    sh &apos;&apos;&apos;
+    x=0
+    while [ &quot;$x&quot; -lt 500 -a ! -e $HOME/output/during.uptime.out ]; do
+        x=$((x+1))
+        sleep .1
+    done
+    &apos;&apos;&apos;
+
+}</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
