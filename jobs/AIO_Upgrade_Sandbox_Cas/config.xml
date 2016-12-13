@@ -228,9 +228,9 @@ def stop_during_test() {
     // Wait up to 10 seconds for the results file gets created by the script
     sh &apos;&apos;&apos;
     x=0
-    while [ &quot;$x&quot; -lt 500 -a ! -e $HOME/output/during.uptime.out ]; do
+    while [ &quot;$x&quot; -lt 60 -a ! -e $HOME/output/during.uptime.out ]; do
         x=$((x+1))
-        sleep .1
+        sleep 1
     done
     &apos;&apos;&apos;
 
