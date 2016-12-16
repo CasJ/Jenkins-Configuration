@@ -1,6 +1,37 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.9">
+  <description></description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.BooleanParameterDefinition>
+          <name>full</name>
+          <description>Boolean value:
+True  - Full rebuild of Bare Metal Environment servers cleaned and brought up from PXE boot (adds ~30 minutes)
+False - Destroy only deployed containers and deploy information (ansible facts, deployed parameters)
+
+You probably want this to be selected</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+        <hudson.model.BooleanParameterDefinition>
+          <name>redeploy</name>
+          <description>Boolean value:
+True  - Redeploy OpenStack on environment
+False - Do not redeploy OpenStack on rebuild environment
+
+You probably want this to be selected</description>
+          <defaultValue>true</defaultValue>
+        </hudson.model.BooleanParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.23">
+    <script></script>
+    <sandbox>true</sandbox>
+  </definition>
   <triggers/>
 </flow-definition>
