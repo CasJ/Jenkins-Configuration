@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.9">
+  <actions/>
   <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
@@ -30,7 +31,67 @@ You probably want this to be selected</description>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.23">
-    <script></script>
+    <script>#!/usr/bin/env groovy
+
+def osa, common
+String workspace_dir 
+String onmetal_ip, elasticsearch_ip, elasticsearch_pkey
+
+// Jenkins must provide these two boolean variables as parameters or the build 
+// will fail:
+//  - full
+//  - redeploy
+
+
+// *******************************
+stage &apos;Pre-Deployment - Load Libraries&apos;
+// *******************************
+
+echo &apos;Load Libs&apos;
+node(&apos;bme-jenkins-slave-n01&apos;) {
+    
+    // Load the external functions using master since the git command
+    // might not be available at the agent yet
+    fileLoader.withGit(&apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
+        common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
+        osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
+    }
+    
+}
+
+// *******************************
+stage &apos;Pre-Deployment - Connect VPN&apos;
+// *******************************
+
+node(&apos;bme-jenkins-slave-n01&apos;) {
+
+    // Connect to f5 vpn  
+    withCredentials([[$class: &apos;UsernamePasswordMultiBinding&apos;, credentialsId: &apos;b4df0136-d403-4e1c-a62b-10d751505d77&apos;,
+    usernameVariable: &apos;CLOUD_USER&apos;, passwordVariable: &apos;CLOUD_PASS&apos;]]) {
+    osa.bme_connect_vpn(&quot;72.32.87.87&quot;, &quot;${CLOUD_USER}&quot;, &quot;${CLOUD_PASS}&quot;)
+    osa.bme_run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;)
+    osa.bme_disconnect_vpn()
+    }
+}
+
+// *******************************
+stage &apos;Deployment - Rebuild BME&apos;
+// *******************************
+
+node(&apos;bme-jenkins-slave-n01&apos;) {
+    osa.bme_run_testsuite(&quot;${full}&quot;, &quot;${redeploy}&quot;)
+    osa.bme_disconnect_vpn()
+}
+
+// *******************************
+stage &apos;Post Deployment - Disconnect VPN&apos;
+// *******************************
+node(&apos;bme-jenkins-slave-n01&apos;) {
+    osa.bme_disconnect_vpn()
+}
+
+
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>
