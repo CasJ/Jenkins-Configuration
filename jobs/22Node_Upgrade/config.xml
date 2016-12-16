@@ -78,9 +78,9 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     withCredentials([[$class: &apos;UsernamePasswordMultiBinding&apos;, credentialsId: &apos;b4df0136-d403-4e1c-a62b-10d751505d77&apos;,
     usernameVariable: &apos;CLOUD_USER&apos;, passwordVariable: &apos;CLOUD_PASS&apos;]]) {
     
+    osa.bme_connect_vpn(&quot;72.32.87.87&quot;, &quot;${CLOUD_USER}&quot;, &quot;${CLOUD_PASS}&quot;)
+
     sh &quot;&quot;&quot;
-    f5fpc --start --host https://72.32.87.87 --user ${CLOUD_USER} --password ${CLOUD_PASS} --nocheck &amp;
-    sleep 10
     rm -rf qa-jenkins-onmetal
     &quot;&quot;&quot;
     git &apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;
@@ -95,7 +95,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     //osa.bme_configure_tempest()
     osa.bme_run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;)
     //osa.bme_run_persistent_resources_tests()    
-    sh &apos;f5fpc --stop &amp;&apos;
+    osa.bme_disconnect_vpn()
     }
 
     // ssh to deploy host
