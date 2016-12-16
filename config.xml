@@ -160,6 +160,7 @@
       <jobNames>
         <comparator class="hudson.util.CaseInsensitiveComparator"/>
         <string>22Node_Upgrade</string>
+        <string>Rebuild BME</string>
         <string>test_bme_vpn_connection</string>
       </jobNames>
       <jobFilters/>
