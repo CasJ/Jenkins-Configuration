@@ -1,7 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.9">
   <actions/>
-  <description></description>
+  <description>Job to rebuild BME.&#xd;
+&#xd;
+Parameterized to allow:&#xd;
+Full rebuild&#xd;
+Full rebuild and redeploy&#xd;
+Destroy OpenStack deploy&#xd;
+Destroy OpenStack deploy and redeploy</description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
