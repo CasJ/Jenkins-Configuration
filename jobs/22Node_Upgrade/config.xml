@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@2.9">
   <actions/>
-  <description>Job used to test upgrade in the 22 node BME on Cloud 5.</description>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.model.ParametersDefinitionProperty>
@@ -60,6 +60,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     fileLoader.withGit(&apos;https://github.com/dankolbrs/qa-jenkins-onmetal.git&apos;, &apos;master&apos;, null, &apos;&apos;) {
         common = fileLoader.load(&apos;jenkins/common.groovy&apos;);
         osa = fileLoader.load(&apos;jenkins/osa_onmetal.functions.groovy&apos;);
+        bme = fileLoader.load(&apos;jenkins/bme.functions.groovy&apos;);
     }
     
 }
@@ -93,7 +94,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     &quot;&quot;&quot;
     
     //osa.bme_configure_tempest()
-    osa.bme_run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;, &quot;/openstack/venvs/tempest-untagged&quot;)
+    //bme.run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;, &quot;/openstack/venvs/tempest-untagged&quot;)
     //osa.bme_run_persistent_resources_tests()    
     osa.bme_disconnect_vpn()
     }
