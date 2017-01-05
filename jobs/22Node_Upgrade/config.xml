@@ -95,8 +95,9 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     
     //osa.bme_configure_tempest()
     //bme.run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;, &quot;/openstack/venvs/tempest-untagged&quot;)
+    bme.upgrade_openstack()
     //osa.bme_run_persistent_resources_tests()    
-    osa.bme_disconnect_vpn()
+    bme.disconnect_vpn()
     }
 
     // ssh to deploy host
