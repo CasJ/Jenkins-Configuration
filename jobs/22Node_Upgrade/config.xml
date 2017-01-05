@@ -79,7 +79,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     withCredentials([[$class: &apos;UsernamePasswordMultiBinding&apos;, credentialsId: &apos;b4df0136-d403-4e1c-a62b-10d751505d77&apos;,
     usernameVariable: &apos;CLOUD_USER&apos;, passwordVariable: &apos;CLOUD_PASS&apos;]]) {
     
-    osa.bme_connect_vpn(&quot;72.32.87.87&quot;, &quot;${CLOUD_USER}&quot;, &quot;${CLOUD_PASS}&quot;)
+    bme.connect_vpn(&quot;72.32.87.87&quot;, &quot;${CLOUD_USER}&quot;, &quot;${CLOUD_PASS}&quot;)
 
     sh &quot;&quot;&quot;
     rm -rf qa-jenkins-onmetal
