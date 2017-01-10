@@ -95,7 +95,7 @@ node(&apos;bme-jenkins-slave-n01&apos;) {
     
     //osa.bme_configure_tempest()
     //bme.run_testsuite(&quot;tempest&quot;, &quot;smoke&quot;, &quot;/openstack/venvs/tempest-untagged&quot;)
-    bme.bash_upgrade_openstack(fake_results=true)
+    bme.bash_upgrade_openstack(&quot;master&quot;, 2, true)
     //osa.bme_run_persistent_resources_tests()    
     bme.disconnect_vpn()
     }
