@@ -82,7 +82,7 @@ node(&apos;cas-agent&apos;) {
     osa.cleanup_test_results()
 
     // Get the agent IP
-    //host_ip = common.get_server_ip()
+    host_ip = common.get_server_ip()
 
     // Deploy OpenStack
     //osa.deploy_openstack(from_release)
